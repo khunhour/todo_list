@@ -1,0 +1,39 @@
+* {
+    font-family:Arial, Helvetica, sans-serif;
+}
+html, body{
+    margin:0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.logoArea{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #223767;
+    color:#dbd7d7;
+    font-size:3em;
+    padding:10px;
+    font-weight: 900;
+}
+.content{
+    display:flex;
+    flex-direction: row;
+    height: 100%;
+}
+.leftPane{
+    background-color: #152042;
+    display: flex;
+    flex-direction: column;
+    color:green;
+    align-self: stretch;
+    padding:10px;
+    width:250px;
+}
+.rightPane{
+    background-color: #162b54;
+    display: flex;
+    flex:2;
+}
