@@ -22,7 +22,7 @@
             <input type="checkbox" class="checkbox" id="checkbox">
             <label for="checkbox" class="label">
                 <span class="material-icons-round sun">wb_sunny</span>
-                <span class="material-icons-round sun">dark_mode</span>
+                <span class="material-icons-round moon">dark_mode</span>
                 <div class="ball"></div>
             </label>
         </div>
@@ -32,9 +32,9 @@
             
             <div class="home">
                 <h2>Home</h2>
-                <button><span class="material-icons-round">today</span>Today</button>
-                <button><span class="material-icons-round">date_range</date-range></span>This Week</button>
-                <button><span class="material-icons-round">star</span>Important</button>
+                <button id="today"><span class="material-icons-round">today</span>Today</button>
+                <button id="thisWeek"><span class="material-icons-round">date_range</date-range></span>This Week</button>
+                <button id="important"><span class="material-icons-round">star</span>Important</button>
             </div>
             <div class="project">
                 <h2>Projects</h2>
@@ -45,9 +45,47 @@
             </div>
         </div>
         <div id="rightPane" class="rightPane">
-            <div class="title">
-                <div class="titleText"></div>
-                <div class="description"></div>
+            <div class="title">Today</div>
+            <div class="list-todo">
+                <ul>
+                    <li>
+                        <div class="list-left">
+                            <div class="checkmark">
+                                <span class="material-icons-round unchecked">radio_button_unchecked</span>
+                                <span class="material-icons-round checked">check_circle</span>
+                            </div>
+                            <!-- <input id="box1" type="checkbox" class="listCheckbox">
+                            <label for="box1">
+                                <span></span>
+                            </label> -->
+                            <p>go cry in the bathroomf sd fsdf dsf ds f dsf dsf sdf helelenfsdfnkjsdfnslf fsdfsdf sdf sd f sdf  dsf sd f sd f sdf sd fd sf fs fsd f sdf ds fds f ds f</p>
+                        </div>
+                        <div class="list-right">
+                            <span class="material-icons-round">edit_note</span>  
+                            <span class="material-icons-round">delete</span>  
+                            
+                        </div>
+                    </li>
+                    <li>
+                        <div class="list-left">
+                            <div class="checkmark">
+                                <span class="material-icons-round unchecked">radio_button_unchecked</span>
+                                <span class="material-icons-round checked">check_circle</span>
+                            </div>
+                            <!-- <input id="box1" type="checkbox" class="listCheckbox">
+                            <label for="box1">
+                                <span></span>
+                            </label> -->
+                            <p>go cry in the bathroomf sd fsdf dsf ds f dsf dsf sdf helelenfsdfnkjsdfnslf fsdfsdf sdf sd f sdf  dsf sd f sd f sdf sd fd sf fs fsd f sdf ds fds f ds f</p>
+                        </div>
+                        <div class="list-right">
+                            <span class="material-icons-round">edit_note</span>  
+                            <span class="material-icons-round">delete</span>  
+                            
+                        </div>
+                    </li>
+                </ul>
+                <button><span class="material-icons-round">add_circle_outlined</span>Add Items</button>
             </div>
         </div>
     </div>
