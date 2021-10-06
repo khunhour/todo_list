@@ -22,7 +22,7 @@ body{
     padding:0;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
 }
 .logoArea{
     display: flex;
@@ -116,7 +116,7 @@ body{
     flex-direction: column;
     color:#eaebec;
     padding:20px;
-    width:250px;
+    width:350px;
 }
 .home{
     display: flex;
@@ -127,10 +127,10 @@ body{
     flex-direction: column;
     margin-top: 15px;
 }
-button ,li{
+button ,li, form{
     font-family: 'Alata', sans-serif;
     margin: 3px 0;
-    height: 45px;
+    height: auto;
     padding-top: 20px;
     font-size: 18px;
     color: white;
@@ -144,7 +144,7 @@ button ,li{
     cursor: pointer;
 }
 
-.leftPane button:hover{
+.leftPane button:hover, form:hover{
     background-color: #1a2a38;
     border:solid 2px #1a2a38;
 }
@@ -154,12 +154,26 @@ button ,li{
     padding-bottom:5px;
     border-bottom: solid 2px white;
 }
+/* form stuff on projects */
+.project #projectForm{
+    visibility: hidden;
+    position: absolute;
+    display:block;
+}
+
+.formInput{
+    display:flex;
+}
+.formButtons{
+    margin-left:40px;
+}
+
+
 .rightPane{
     background-color: #192734;
     display: flex;
     flex-direction: column;
-    padding:30px;
-
+    padding: 30px 50px;
     flex:1;
 }
 .title{
@@ -208,6 +222,12 @@ ul .material-icons-round{
     border-radius: 50%;
     color: var(--accent);
     opacity: 1;
+}
+.important{
+    position: absolute;
+    color: yellow;
+    opacity: 1;
+    z-index: 2;
 }
 .cancel{
     color: red;
