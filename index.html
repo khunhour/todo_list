@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
 
 
-    <script src="main.js"></script>
+    <script defer src="test.js"></script>
     <title>ToDo List</title>
 </head>
 <body>
@@ -41,14 +41,24 @@
                 <button><span class="material-icons-round">menu</span>Workout</button>
                 <button><span class="material-icons-round">menu</span>The Odin Projects</button>
                 <button><span class="material-icons-round">menu</span>Mid-life crisis</button>
-                
+                <form id="projectForm">
+                    <div class="formInput">
+                        <span class="material-icons-round">menu</span>
+                        <input type="text" id="projectInput">
+                    </div>
+                    <div class="formButtons">
+                        <input type="submit" value="Add">
+                        <input type="button" value="Cancel">
+                    </div>
+                </form>
+                <button id="addListProject"><span class="material-icons-round">add_circle_outlined</span>Add Items</button>
             </div>
         </div>
         <div id="rightPane" class="rightPane">
             <div class="title">Today</div>
             <div class="list-todo">
                 <ul>
-                    <li>
+                    <li data-id="1">
                         <div class="list-left">
                             <div class="checkmark">
                                 <span class="material-icons-round unchecked">radio_button_unchecked</span>
@@ -61,6 +71,10 @@
                             <p>go cry in the bathroomf sd fsdf dsf ds f dsf dsf sdf helelenfsdfnkjsdfnslf fsdfsdf sdf sd f sdf  dsf sd f sd f sdf sd fd sf fs fsd f sdf ds fds f ds f</p>
                         </div>
                         <div class="list-right">
+                            <div>
+                                <span class="material-icons-round important">star</span>
+                            </div>
+                            <span class="material-icons-round ">star_outline</span>
                             <span class="material-icons-round">edit_note</span>  
                             <span class="material-icons-round">delete</span>  
                             
@@ -76,7 +90,7 @@
                             <label for="box1">
                                 <span></span>
                             </label> -->
-                            <p>go cry in the bathroomf sd fsdf dsf ds f dsf dsf sdf helelenfsdfnkjsdfnslf fsdfsdf sdf sd f sdf  dsf sd f sd f sdf sd fd sf fs fsd f sdf ds fds f ds f</p>
+                            <p>go f sdf  dsf sd f sd f sdf sd fd sf fs fsd f sdf ds fds f ds f</p>
                         </div>
                         <div class="list-right">
                             <span class="material-icons-round">edit_note</span>  
@@ -85,7 +99,8 @@
                         </div>
                     </li>
                 </ul>
-                <button><span class="material-icons-round">add_circle_outlined</span>Add Items</button>
+                
+                <button><span class="material-icons-round addList">add_circle_outlined</span>Add Items</button>
             </div>
         </div>
     </div>
