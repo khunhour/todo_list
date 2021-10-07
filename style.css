@@ -14,6 +14,7 @@
 }
 
 html{
+    width: 100%;
     height:100%;
 }
 body{
@@ -22,7 +23,7 @@ body{
     padding:0;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 100%;
 }
 .logoArea{
     display: flex;
@@ -101,12 +102,21 @@ body{
 .checkbox:checked + label{
     background-color: var(--whiteText);
 }
+
+
+
 .content{
     display:flex;
     flex-direction: row;
-    height: 100%;
+    flex:1;
 }
 .leftPane .material-icons-round{
+    margin-right: 5px;
+    margin-left:10px;
+}
+.leftPane img{
+    width: 27px;
+    height: 27px;
     margin-right: 5px;
     margin-left:10px;
 }
@@ -127,6 +137,12 @@ body{
     flex-direction: column;
     margin-top: 15px;
 }
+
+.leftPane h2{
+    margin-top: 0;
+    padding-bottom:5px;
+    border-bottom: solid 2px white;
+}
 button ,li, form{
     font-family: 'Alata', sans-serif;
     margin: 3px 0;
@@ -143,31 +159,66 @@ button ,li, form{
     box-sizing: border-box;
     cursor: pointer;
 }
-
 .leftPane button:hover, form:hover{
     background-color: #1a2a38;
     border:solid 2px #1a2a38;
 }
+.number{
+    min-width: 10px;
+    min-height: 12px;
+    padding: 1px 5px;
+    margin-left: 12px;
 
-.leftPane h2{
-    margin-top: 0;
-    padding-bottom:5px;
-    border-bottom: solid 2px white;
+    font-size: 15px;
+    background-color: var(--accentDark);
+    border-radius: 30px;
+    vertical-align: center;
 }
+.removeProject{
+    display: none;
+    align-items: center;
+    margin-left:auto;
+}
+.project button:hover > .removeProject{
+    display: flex;
+}
+
 /* form stuff on projects */
 .project #projectForm{
     visibility: hidden;
     position: absolute;
-    display:block;
+    display:flex;
+    align-items:flex-start;
+}
+.projectIcon{
+    margin-top: 3px;
 }
 
 .formInput{
     display:flex;
+
 }
 .formButtons{
-    margin-left:40px;
+    display: flex;
+    justify-content:center;
 }
-
+.projectSubmitBtn, .projectCancelBtn{
+    font-family:'Alata';
+    width:60px;
+    margin:5px;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    cursor: pointer;
+    padding:5px;
+    font-weight: bold;
+}
+.projectSubmitBtn{
+    background-color: var(--accentDark);
+}
+.projectCancelBtn{
+    background-color: rgb(190, 4, 4);
+}
 
 .rightPane{
     background-color: #192734;
@@ -208,21 +259,48 @@ li{
     display: flex;
     flex-direction: row;
 }
+
 .checkmark{
     padding-top:3px;
+    display: block;
 }
 ul .material-icons-round{
     transform:scale(0.8);
     margin-right: 8px;
     float: right;
 }
+.unchecked{
+    width: 20px;
+    height:20px;
+    border:solid 2px white ;
+    border-radius: 50%;
+    margin-top: 5px;
+    margin-right: 5px;
+    
+}
+
 .checked{
+    background-image: url("./images/checkmark.png");
+    background-size:100%;
+    background-repeat: no-repeat;
+    background-origin:border-box;
+    background-color: ivory;
+}
+/* .checked{
+    background-image:url("./images/checkmark.png");
+    background-size:cover;
+    background-origin:border-box;
+    background-color: white;
+} */
+
+/* .checked{
+    background-image: url("./images/checkmark.png");
     position: absolute;
     background: white;
     border-radius: 50%;
     color: var(--accent);
-    opacity: 1;
-}
+    opacity: 0;
+} */
 .important{
     position: absolute;
     color: yellow;

@@ -32,26 +32,58 @@
             
             <div class="home">
                 <h2>Home</h2>
-                <button id="today"><span class="material-icons-round">today</span>Today</button>
-                <button id="thisWeek"><span class="material-icons-round">date_range</date-range></span>This Week</button>
-                <button id="important"><span class="material-icons-round">star</span>Important</button>
+                <button id="today">
+                    <img src="images/today.png" alt="today">
+                    <div>Today</div>
+                    <div class="number">0</div>
+                </button>
+                <button id="thisWeek">
+                    <img src="images/icons8-calendar-week7-96.png">
+                    <div>This Week</div>
+                    <div class="number">0</div>
+                </button>
+                <button id="important">
+                    <span class="material-icons-round">star</span>
+                    <div>Important</div>
+                    <div class="number">0</div>
+                </button>
             </div>
             <div class="project">
                 <h2>Projects</h2>
-                <button><span class="material-icons-round">menu</span>Workout</button>
-                <button><span class="material-icons-round">menu</span>The Odin Projects</button>
-                <button><span class="material-icons-round">menu</span>Mid-life crisis</button>
-                <form id="projectForm">
-                    <div class="formInput">
-                        <span class="material-icons-round">menu</span>
-                        <input type="text" id="projectInput">
+                <button>
+                    <span class="material-icons-round">menu</span>
+                    <div>Workout</div>
+                    <div class="number">234</div>
+                    <div class="removeProject">
+                        <span class="material-icons-round">close</span>
                     </div>
-                    <div class="formButtons">
-                        <input type="submit" value="Add">
-                        <input type="button" value="Cancel">
+                </button>
+                <button>
+                    <span class="material-icons-round">menu</span>
+                    <div>The Odin Projects</div>
+                    <div class="removeProject">
+                        <span class="material-icons-round">close</span>
+                    </div>
+                </button><button>
+                    <span class="material-icons-round">menu</span>
+                    <div>Task</div>
+                    <div class="removeProject">
+                        <span class="material-icons-round">close</span>
+                    </div>
+                </button>
+                <form id="projectForm" autocomplete="off">
+                    <div class="projectIcon">
+                        <span class="material-icons-round">menu</span>
+                    </div>
+                    <div>
+                        <input type="text" class="inputField" id="projectInput">
+                        <div class="formButtons">
+                            <input type="submit" class="projectSubmitBtn" value="Add">
+                            <input type="button" class="projectCancelBtn" value="Cancel">
+                        </div>
                     </div>
                 </form>
-                <button id="addListProject"><span class="material-icons-round">add_circle_outlined</span>Add Items</button>
+                <button id="addListProject"><span class="material-icons-round">add_circle_outlined</span>Add Project</button>
             </div>
         </div>
         <div id="rightPane" class="rightPane">
@@ -60,9 +92,8 @@
                 <ul>
                     <li data-id="1">
                         <div class="list-left">
-                            <div class="checkmark">
-                                <span class="material-icons-round unchecked">radio_button_unchecked</span>
-                                <span class="material-icons-round checked">check_circle</span>
+                            <div>
+                                <div class="unchecked"></div>
                             </div>
                             <!-- <input id="box1" type="checkbox" class="listCheckbox">
                             <label for="box1">
@@ -83,8 +114,8 @@
                     <li>
                         <div class="list-left">
                             <div class="checkmark">
-                                <span class="material-icons-round unchecked">radio_button_unchecked</span>
-                                <span class="material-icons-round checked">check_circle</span>
+                                <span class="material-icons-round ">radio_button_unchecked</span>
+                                <span class="material-icons-round ">check_circle</span>
                             </div>
                             <!-- <input id="box1" type="checkbox" class="listCheckbox">
                             <label for="box1">
