@@ -5,8 +5,8 @@ const CreateList = (title, notes) => {
     console.log(title);
     console.log(notes);
 }
-console.log("hi");
 
+// pop up the project form
 const showForm = () => {
     const projectForm = document.querySelector("#projectForm");
     projectForm.style.cssText = "visibility: visible; position:relative;";
@@ -41,8 +41,6 @@ const addProject = (textInput) => {
 
     const removeIcon = createSpanIcon("close");
     removediv.appendChild(removeIcon);
-
-    // activateEventListener(removediv);
 
     removediv.addEventListener("click", removeProject);
 }
@@ -85,7 +83,7 @@ const removeProject = (e) =>{
     console.log(remove);
 }
 
-
+//rearrange data set after one has been deleted
 const rearrangeProject = (index) => {
     const buttons = document.querySelectorAll("[data-project]");
     buttons.forEach((button) => {
