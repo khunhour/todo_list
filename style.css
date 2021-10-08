@@ -150,7 +150,7 @@ body{
     padding-bottom:5px;
     border-bottom: solid 2px white;
 }
-button ,li, form{
+button ,li, form, .tile{
     font-family: 'Alata', sans-serif;
     margin: 3px 0;
     height: auto;
@@ -166,7 +166,7 @@ button ,li, form{
     box-sizing: border-box;
     cursor: pointer;
 }
-.leftPanel button:hover, form:hover{
+.leftPanel .tile:hover, button:hover, form:hover{
     background-color: #1a2a38;
     border:solid 2px #1a2a38;
 }
@@ -185,14 +185,44 @@ button ,li, form{
     border-radius: 30px;
     vertical-align: center;
 }
-.removeProject{
+.project .tile:hover > .editProject{
+    display: flex;
+}
+
+.editProject{
     display: none;
     align-items: center;
     justify-self: self-end;
+
+/* without posotion relative in editproject the 
+position absolute in .option will be based on window 
+and not his parent .editProject */
+
+    position: relative;             
 }
-.project button:hover > .removeProject{
+.editProject:focus .option{
+    visibility: visible;
+}
+/* option:not(:hover){
+    visibility: hidden;
+} */
+.option{
+    visibility: hidden;
     display: flex;
+    flex-direction: column;
+    background: var(--whiteText);
+    bottom:30px;
+    z-index: 2;
+    border-radius:3px;
+    background-color: #273746;
+    padding:4px;
+    /* read above comment */
+    position:absolute;
 }
+.option > button{
+    color:white;
+}
+
 
 /* form stuff on projects */
 .project #projectForm{
@@ -236,7 +266,7 @@ input[type=text]{
     justify-content:center;
     width: 100%;
 }
-.projectSubmitBtn, .projectCancelBtn{
+.projectSubmitBtn, .projectCancelBtn, .listSubmitBtn, .listCancelBtn{
     font-family:'Alata';
     width:60px;
     margin:5px;
