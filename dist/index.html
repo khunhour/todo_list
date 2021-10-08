@@ -35,54 +35,64 @@
             
             <div class="home">
                 <h2>Home</h2>
-                <button id="today">
+                <div class="tile" id="today">
                     <img src="images/today1.png" alt="today">
                     <div>Today</div>
                     <div class="number">0</div>
-                </button>
-                <button id="thisWeek">
+                </div>
+                <div class="tile" id="thisWeek">
                     <img src="images/week2.png">
                     <div>This Week</div>
                     <div class="number">0</div>
-                </button>
-                <button id="important">
+                </div>
+                <div class="tile" id="important">
                     <img src="images/star.png" alt="star">
                     <div>Important</div>
                     <div class="number">0</div>
-                </button>
+                </div>
             </div>
             <div class="project">
-                <h2>Projects</h2>
-                <button data-project="0">
+                <h2>Projects
+                    <span id="" class="material-icons-round">drive_file_rename_outline</span>
+                </h2>
+                
+                <div class="tile" data-project="0">
                     <div class="projectInfo">
                         <span class="material-icons-round">menu</span>
                         <div>Workout</div>
                         <div class="number">234</div>
                     </div>
-                    <div class="removeProject">
-                        <span class="material-icons-round">close</span>
+                    
+                    <div class="editProject" tabindex="0">
+                        <span class="material-icons-round">more_vert</span>
+                        <span class="option">
+                            <button>Rename</button>
+                            <button>Delete</button>
+                        </span>
                     </div>
-                </button>
-                <button data-project="1">
+                    
+                </div>
+
+                <div class="tile" data-project="1">
                     <div class="projectInfo">
                         <span class="material-icons-round">menu</span>
                         <div>The Odin Projects</div>
 
                     </div>
-                    <div class="removeProject">
-                        <span class="material-icons-round">close</span>
+                    <div class="editProject">
+                        <span class="material-icons-round">more_vert</span>
                     </div>
-                </button>
-                <button data-project="2">
+                </div>
+                <div class="tile" data-project="2">
                     <div class="projectInfo">
                         <span class="material-icons-round">menu</span>
                         <div>Task</div>
 
                     </div>
-                    <div class="removeProject">
-                        <span class="material-icons-round">close</span>
+                    <div class="editProject">
+                        <span class="material-icons-round">more_vert</span>
                     </div>
-                </button>
+                </div>
                 <form id="projectForm" class="hidden" autocomplete="off">
                     <div class="projectIcon">
                         <span class="material-icons-round">menu</span>
@@ -95,7 +105,7 @@
                         </div>
                     </div>
                 </form>
-                <button id="addListProject"><span class="material-icons-round">add_circle_outlined</span>Add Project</button>
+                <button id="addProject"><span class="material-icons-round">add_circle_outlined</span>Add Project</button>
             </div>
         </div>
         <div id="rightPanel" class="rightPanel">
@@ -139,10 +149,7 @@
                         </div>
                     </li>
                 </ul>
-                <!-- <form id="listForm" class="hidden" autocomplete="off">
-                    <div class="listIcon">
-                        <span class="material-icons-round">menu</span>
-                    </div>
+                <form id="listForm" class="hidden" autocomplete="off">
                     <div class="inputField">
                         <input type="text" id="listInput">
                         <div class="formButtons">
@@ -150,7 +157,7 @@
                             <input type="button" class="listCancelBtn" value="Cancel">
                         </div>
                     </div>
-                </form> -->
+                </form>
                 <button id="addList"><span class="material-icons-round">add_circle_outlined</span>Add Items</button>
             </div>
         </div>

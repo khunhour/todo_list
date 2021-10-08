@@ -3,36 +3,36 @@ import { showNote } from "./note";
 const createEventListener = () =>{
     //event listener for creating a form for adding projects
     const cancel = document.querySelector(".projectCancelBtn");
-    cancel.addEventListener("click", hideForm);
+    cancel.addEventListener("click", hideProjectForm);
     
-    const add = document.getElementById('addListProject');
-    add.addEventListener("click", showForm);
+    const add = document.getElementById('addProject');
+    add.addEventListener("click", showProjectForm);
     
     const submit = document.getElementById("projectForm");
     submit.addEventListener("submit", processProjectInput);
 
     //event listener for the few default projects on start up
-    const closeProjects = document.querySelectorAll('.removeProject');
+    const closeProjects = document.querySelectorAll('.editProject');
     closeProjects.forEach((project) => {
-        project.addEventListener("click", removeProject);
+        project.addEventListener("click", editProject);
     });
 }
 
 const processProjectInput = (e) => {
     let projectInput = document.getElementById("projectInput").value;
     addProject(projectInput);
-    hideForm();
+    hideProjectForm();
     e.preventDefault();
 }
 
 // pop up the project form
-const showForm = () => {
+const showProjectForm = () => {
     const projectForm = document.querySelector("#projectForm");
     projectForm.classList.replace("hidden", "visible");
 }
 
 //hide project form
-const hideForm = () => {
+const hideProjectForm = () => {
     const projectForm = document.querySelector("#projectForm");
     const projectInput = document.querySelector('#projectInput');
 
@@ -47,13 +47,14 @@ const addProject = (textInput) => {
     const project = document.querySelector('.project');
     const form = document.querySelector('#projectForm');
 
-    const button = document.createElement('button');
-    button.setAttribute("data-project", `${datasetNum}`);
-    project.insertBefore(button, form);
+    const container = document.createElement('div');
+    container.setAttribute("data-project", `${datasetNum}`);
+    container.classList.add("tile");
+    project.insertBefore(container, form);
 
     const projectInfo = document.createElement("div");
     projectInfo.classList.add("projectInfo");
-    button.appendChild(projectInfo);
+    container.appendChild(projectInfo);
 
     const menuIcon = createSpanIcon("menu");
     const projectName = document.createTextNode(textInput);
@@ -61,31 +62,39 @@ const addProject = (textInput) => {
     projectInfo.appendChild(menuIcon);
     projectInfo.appendChild(projectName);
 
-    const removediv = document.createElement('div');
-    removediv.classList.add('removeProject');
-    button.appendChild(removediv);
+    const editdiv = document.createElement('div');
+    editdiv.classList.add('editProject');
+    container.appendChild(editdiv);
 
-    const removeIcon = createSpanIcon("close");
-    removediv.appendChild(removeIcon);
+    const editIcon = createSpanIcon("more_vert");
+    editdiv.appendChild(editIcon);
 
     projectInfo.addEventListener("click", showNote);
-    removediv.addEventListener("click", removeProject);
+    editdiv.addEventListener("click", showOption);
+}
+//show option to rename or delete project
+const showOption = (e) =>{
+    let index = e.target.parentNode.parentNode.dataset.project;
+
+    const button = document.querySelector(`[data-project="${index}"]`);
+    const div = document.createElement('div');
+    div.classList.add("option");
+    button.appendChild(div);
+
+
+    console.log("hi")
+
 }
 
+
 //remove project from list
-const removeProject = (e) =>{
-    let removedIndex = e.target.parentNode.parentNode.dataset.project;
+const editProject = (e) => {
+    // let index = e.target.parentNode.parentNode.dataset.project;
 
-    const remove = document.querySelector(".removeProject");
-    const button = document.querySelector(`[data-project="${removedIndex}"]`);
-    button.remove();
-
-    rearrangeProject(removedIndex);
-
-    console.log(removedIndex);
-    console.log(e.currentTarget.parentNode.parentNode);
-    console.log("imma remove this");
-    console.log(remove);
+    // const button = document.querySelector(`[data-project="${index}"]`);
+    // button.remove();
+    // rearrangeProject(index);
+    console.log("hi");
 }
 
 // create a span icon of google material icons

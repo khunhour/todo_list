@@ -1,14 +1,27 @@
-import {showForm, hideForm} from "./project";
+
 
 
 function listEvent(){
     const addList = document.querySelector("#addList");
-    addList.addEventListener("click", createList);
+    addList.addEventListener("click", showListForm);
 
     const check = document.querySelector(".unchecked");
     check.addEventListener("click", turnCheckMark);
 }
+// pop up the project form
+const showListForm = () => {
+    const ListForm = document.querySelector("#listForm");
+    ListForm.classList.replace("hidden", "visible");
+}
 
+//hide List form
+const hideListForm = () => {
+    const ListForm = document.querySelector("#ListForm");
+    const ListInput = document.querySelector('#ListInput');
+
+    ListInput.value = "";
+    ListForm.classList.replace("visible", "hidden");
+}
 //function to add event listener to project for showing that project notes
 function projectsEventListener(){
     const projects = document.querySelectorAll(".projectInfo");
