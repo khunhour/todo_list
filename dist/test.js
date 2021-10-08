@@ -19,10 +19,14 @@ const createSpanIcon = (name) => {
     return icon;
 }
 // create a project and add it to the list of projects 
+
 const addProject = (textInput) => {
+    let datasetNum = findNextDataset();
+
     const project = document.querySelector('.project');
     const form = document.querySelector('#projectForm');
     const button = document.createElement('button');
+    button.setAttribute("data-project", `${datasetNum}`);
     project.insertBefore(button, form);
 
     const menuIcon = createSpanIcon("menu");
@@ -43,6 +47,11 @@ const addProject = (textInput) => {
     removediv.addEventListener("click", removeProject);
 }
 
+//find next data-set
+const findNextDataset = () => {
+    const allprojects = document.querySelectorAll("[data-project]");
+    return allprojects.length;
+}
 //add event Listener to buttons
 // const activateEventListener = (div) => {
 //     div.addEventListener("click", )
@@ -59,14 +68,32 @@ const hideForm = () =>{
     
 }
 //remove project from list
-const removeProject = () =>{
+const removeProject = (e) =>{
     //need data set to specific div
     const remove = document.querySelector(".removeProject");
+
+    let removedIndex = e.target.parentNode.parentNode.dataset.project;
+
+    const button = document.querySelector(`[data-project="${removedIndex}"]`);
+    button.remove();
+
+    rearrangeProject(removedIndex);
+
+    console.log(removedIndex);
+    console.log(e.target.parentNode.parentNode);
     console.log("imma remove this");
     console.log(remove);
 }
 
 
+const rearrangeProject = (index) => {
+    const buttons = document.querySelectorAll("[data-project]");
+    buttons.forEach((button) => {
+        if(button.dataset.project > index){
+            button.dataset.project = button.dataset.project-1;
+        }
+    });
+}
 
 // process inputed text, add project, and hide form again 
 const processProjectInput = (e) => {

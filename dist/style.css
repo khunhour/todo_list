@@ -74,10 +74,16 @@ body{
     opacity: 0;
     position: absolute;
 }
-
+.star{
+    width:12px;
+    position: absolute;
+    left:52px;
+    bottom:15px;
+}
 .sun{
     color: #f7c603;
     transform: scale(1.3);
+    width:24.7px;
 }
 .moon{
     color:rgb(86, 152, 163);
