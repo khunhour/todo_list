@@ -21,8 +21,11 @@
         <div class="theme">
             <input type="checkbox" class="checkbox" id="checkbox">
             <label for="checkbox" class="label">
-                <span class="material-icons-round sun">wb_sunny</span>
+                <img class="sun" src="images/sun.gif">
+                <!-- <span class="material-icons-round sun">wb_sunny</span> -->
+                
                 <span class="material-icons-round moon">dark_mode</span>
+                <img class="star" src="images/night star.gif">
                 <div class="ball"></div>
             </label>
         </div>
@@ -33,24 +36,24 @@
             <div class="home">
                 <h2>Home</h2>
                 <button id="today">
-                    <img src="images/today.png" alt="today">
+                    <img src="images/today1.png" alt="today">
                     <div>Today</div>
                     <div class="number">0</div>
                 </button>
                 <button id="thisWeek">
-                    <img src="images/icons8-calendar-week7-96.png">
+                    <img src="images/week2.png">
                     <div>This Week</div>
                     <div class="number">0</div>
                 </button>
                 <button id="important">
-                    <span class="material-icons-round">star</span>
+                    <img src="images/star.png" alt="star">
                     <div>Important</div>
                     <div class="number">0</div>
                 </button>
             </div>
             <div class="project">
                 <h2>Projects</h2>
-                <button>
+                <button data-project="0">
                     <span class="material-icons-round">menu</span>
                     <div>Workout</div>
                     <div class="number">234</div>
@@ -58,13 +61,14 @@
                         <span class="material-icons-round">close</span>
                     </div>
                 </button>
-                <button>
+                <button data-project="1">
                     <span class="material-icons-round">menu</span>
                     <div>The Odin Projects</div>
                     <div class="removeProject">
                         <span class="material-icons-round">close</span>
                     </div>
-                </button><button>
+                </button>
+                <button data-project="2">
                     <span class="material-icons-round">menu</span>
                     <div>Task</div>
                     <div class="removeProject">
