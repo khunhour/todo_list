@@ -7,6 +7,31 @@ function editProjectEventListener(){
         option.firstElementChild.addEventListener("click", showRenameForm);
         option.lastElementChild.addEventListener("click", deleteProject);
     });
+
+    
+    document.addEventListener("click", e =>{
+        const isDropdownButton = e.target.matches("[data-dropdown-button]");
+        //focus with-in function = the drop down wont disapear if you click on drop down button
+        if(!isDropdownButton && e.target.closest('[data-dropdown]') != null){
+            return;
+        }
+        let currentDropDown
+        //if it is then show form
+        if(isDropdownButton){
+            currentDropDown = e.target.closest("[data-dropdown]");
+            currentDropDown.classList.toggle("active");
+        }
+        //if click other dropdown then other disappear
+        document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
+
+            console.log(currentDropDown);           //if click anywhere else currentDropDown = undefined meaning all active one closes
+            if(dropdown === currentDropDown){
+                return;
+            }
+            //basically close all other drop down before open another
+            dropdown.classList.remove("active");
+        });
+    });
 }
 
 //show option to rename or delete project
@@ -114,5 +139,8 @@ const rearrangeProject = (index) => {
         }
     });
 }
+
+
+
 
 export {editProjectEventListener, showRenameForm, deleteProject};

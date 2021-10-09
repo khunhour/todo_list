@@ -134,6 +134,7 @@ body{
     color:#eaebec;
     padding:20px;
     width:350px;
+    /* box-shadow: 0 2px 5px rgba(0,0,0, 0.4); */
 }
 .home{
     display: flex;
@@ -166,10 +167,14 @@ button ,li, form, .tile{
     box-sizing: border-box;
     cursor: pointer;
 }
+.leftPanel .tile:focus{
+    border-left: solid 2px white !important;
+}
 .leftPanel .tile:hover, button:hover, form:hover{
     background-color: #1a2a38;
     border:solid 2px #1a2a38;
 }
+
 .projectInfo{
     display: flex;
     flex:1;
@@ -185,30 +190,28 @@ button ,li, form, .tile{
     border-radius: 30px;
     vertical-align: center;
 }
-.project .tile:hover > .editProject{
-    display: flex;
-}
+/* css for editProject part */
 
 .editProject{
-    display: none;
+    /* opacity: 0; */
+    display: flex;
     align-items: center;
     justify-self: self-end;
     margin-left:auto;
-/* without posotion relative in editproject the 
-position absolute in .option will be based on window 
-and not his parent .editProject */
-
+    /* without posotion relative in editproject the 
+    position absolute in .option will be based on window 
+    and not his parent .editProject */
     position: relative;             
 }
-/* .editProject:not(:hover) .option{
-    visibility: hidden;
-} */
-.editProject:focus-within .option{
-    display: flex !important;
+.editProject.active .option{
+    opacity: 1; 
+    pointer-events: auto;
+    transform: translateY(0);
 }
 .option{
-    
-    display: none;
+    pointer-events: none;
+    display: flex;
+    opacity: 0;
     flex-direction: column;
     background: var(--whiteText);
     bottom:30px;
@@ -216,6 +219,10 @@ and not his parent .editProject */
     border-radius:3px;
     background-color: #273746;
     padding:4px;
+    box-shadow: 0 2px 5px rgba(0,0,0, 0.4);
+    transform: translateY(+10px) ;
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    
     /* read above comment */
     position:absolute;
 }
@@ -270,7 +277,12 @@ input[type=text]{
     justify-content:center;
     width: 100%;
 }
-.projectSubmitBtn, .projectCancelBtn, .rename-renameBtn, .rename-cancelBtn,.listSubmitBtn, .listCancelBtn{
+.projectSubmitBtn,
+.projectCancelBtn,
+.rename-renameBtn,
+.rename-cancelBtn,
+.listSubmitBtn,
+.listCancelBtn{
     font-family:'Alata';
     width:70px;
     margin:5px;
@@ -281,10 +293,12 @@ input[type=text]{
     padding:5px;
     font-weight: bold;
 }
-.projectSubmitBtn, .rename-renameBtn{
+.projectSubmitBtn,
+.rename-renameBtn{
     background-color: var(--accentDark);
 }
-.projectCancelBtn, .rename-cancelBtn{
+.projectCancelBtn,
+.rename-cancelBtn{
     background-color: rgb(190, 4, 4);
 }
 
@@ -389,10 +403,10 @@ ul p{
 .list-right .material-icons-round{
     transform:scale(1.1);
     border-radius: 3px;
-    transition: background-color 0.1s ease-in, transform 0.1s ease-in;
+    transition: background-color 150ms ease-in-out, transform 150ms ease-in-out;
 }
 .list-right .material-icons-round:hover{
-    transform:scale(1.15);
+    transform:scale(1.1);
     background-color:#253c50;
     
 }

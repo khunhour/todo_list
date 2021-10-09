@@ -57,6 +57,7 @@ const addProject = (textInput) => {
     //name and number status
     const projectInfo = document.createElement("div");
     projectInfo.classList.add("projectInfo");
+    projectInfo.tabIndex = "0";
     container.appendChild(projectInfo);
 
     const projectName = document.createElement('div');
@@ -69,14 +70,15 @@ const addProject = (textInput) => {
     //three dots on the right section
     const editdiv = document.createElement('div');
     editdiv.classList.add('editProject');
-    editdiv.setAttribute("tabIndex", "0");
+    editdiv.setAttribute("data-dropdown","");
     container.appendChild(editdiv);
     //call function to create a span icon from google cuz im lazy
     const editIcon = createSpanIcon("more_vert");
+    editIcon.setAttribute("data-dropdown-button","");
     editdiv.appendChild(editIcon);
 
     //onclick show rename and delete section
-    const option = document.createElement('span');
+    const option = document.createElement('div');
     option.classList.add("option");
     editdiv.appendChild(option);
 
