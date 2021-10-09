@@ -1,4 +1,5 @@
-import { projectsEventListener, showNote } from "./note";
+import { projectsEventListener, showNote} from "./note";
+import { showRenameForm , deleteProject} from "./editProject";
 
 const createEventListener = () =>{
     //event listener for creating a form for adding projects
@@ -10,12 +11,7 @@ const createEventListener = () =>{
     
     const submit = document.getElementById("projectForm");
     submit.addEventListener("submit", processProjectInput);
-
-    const options = document.querySelectorAll('.option');
-    options.forEach((option) =>{
-        option.firstElementChild.addEventListener("click", renameProject);
-        option.lastElementChild.addEventListener("click", deleteProject);
-    });
+    
 }
 
 const processProjectInput = (e) => {
@@ -27,8 +23,11 @@ const processProjectInput = (e) => {
 
 // pop up the project form
 const showProjectForm = () => {
+    
     const projectForm = document.querySelector("#projectForm");
     projectForm.classList.replace("hidden", "visible");
+    //focus on input field
+    document.getElementById("projectInput").focus();
 }
 
 //hide project form
@@ -52,14 +51,19 @@ const addProject = (textInput) => {
     container.classList.add("tile");
     project.insertBefore(container, form);
 
+    //menu three lines icon
+    const menuIcon = createSpanIcon("menu");
+    container.appendChild(menuIcon);
+    //name and number status
     const projectInfo = document.createElement("div");
     projectInfo.classList.add("projectInfo");
     container.appendChild(projectInfo);
 
-    const menuIcon = createSpanIcon("menu");
-    const projectName = document.createTextNode(textInput);
+    const projectName = document.createElement('div');
+    projectName.classList.add("projectName");
+    projectName.textContent = textInput;
 
-    projectInfo.appendChild(menuIcon);
+    
     projectInfo.appendChild(projectName);
 
     //three dots on the right section
@@ -85,7 +89,7 @@ const addProject = (textInput) => {
     option.appendChild(renameBtn);
     option.appendChild(deleteBtn);
 
-    // renameBtn.addEventListener("click", renameProject);
+    renameBtn.addEventListener("click", showRenameForm);
     deleteBtn.addEventListener("click", deleteProject);
     projectInfo.addEventListener("click", showNote);
 }
@@ -93,26 +97,8 @@ const addProject = (textInput) => {
 const addEventListenerToButton = (button) => {
     button.addEventListener("click", )
 }
-//show option to rename or delete project
-const renameProject = (e) =>{
-    // let index = e.target.parentNode.parentNode.dataset.project;
 
-    // const button = document.querySelector(`[data-project="${index}"]`);
-    // const div = document.createElement('div');
-    // div.classList.add("option");
-    // button.appendChild(div);
-    console.log("rename");
 
-}
-
-//remove project from list
-const deleteProject = (e) => {
-    let index = e.target.parentNode.parentNode.parentNode.dataset.project;
-    console.log(index);
-    const tile = document.querySelector(`[data-project="${index}"]`);
-    tile.remove();
-    rearrangeProject(index);
-}
 
 // create a span icon of google material icons
 const createSpanIcon = (name) => {
@@ -128,14 +114,4 @@ const findNextDataset = () => {
     return allprojects.length;
 }
 
-//rearrange data set after one has been deleted
-const rearrangeProject = (index) => {
-    const buttons = document.querySelectorAll("[data-project]");
-    buttons.forEach((button) => {
-        if(button.dataset.project > index){
-            button.dataset.project = button.dataset.project-1;
-        }
-    });
-}
-
-export {createEventListener};
+export {createEventListener, createSpanIcon};
