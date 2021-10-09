@@ -35,17 +35,17 @@
             
             <div class="home">
                 <h2>Home</h2>
-                <div class="tile" id="today">
+                <div class="tile" id="today" tabindex="-1">
                     <img src="images/today1.png" alt="today">
                     <div>Today</div>
                     <div class="number">0</div>
                 </div>
-                <div class="tile" id="thisWeek">
+                <div class="tile" id="thisWeek" tabindex="-1">
                     <img src="images/week2.png">
                     <div>This Week</div>
                     <div class="number">0</div>
                 </div>
-                <div class="tile" id="important">
+                <div class="tile" id="important" tabindex="-1">
                     <img src="images/star.png" alt="star">
                     <div>Important</div>
                     <div class="number">0</div>
@@ -72,46 +72,46 @@
                 <div class="tile" data-project="0">
                     <span class="material-icons-round">menu</span>
                     
-                    <div class="projectInfo">
-                        <div class="projectName">Workout</div>
+                    <div class="projectInfo" tabindex="-1">
+                        <div class="projectName" >Workout</div>
                         <div class="number">234</div>
                     </div>
                     
-                    <div class="editProject" tabindex="0">
-                        <span class="material-icons-round">more_vert</span>
-                        <span class="option">
+                    <div class="editProject" data-dropdown>
+                        <span class="material-icons-round" data-dropdown-button>more_vert</span>
+                        <div class="option">
                             <button>Rename</button>
                             <button>Delete</button>
-                        </span>
+                        </div>
                     </div>
                 </div>
 
                 <div class="tile" data-project="1">
                     <span class="material-icons-round">menu</span>
-                    <div class="projectInfo">
+                    <div class="projectInfo" tabindex="-1">
                         <div class="projectName">The Odin Projects</div>
 
                     </div>
-                    <div class="editProject" tabindex="0">
-                        <span class="material-icons-round">more_vert</span>
-                        <span class="option">
+                    <div class="editProject" data-dropdown>
+                        <span class="material-icons-round" data-dropdown-button>more_vert</span>
+                        <div class="option">
                             <button>Rename</button>
                             <button>Delete</button>
-                        </span>
+                        </div>
                     </div>
                 </div>
                 <div class="tile" data-project="2">
                     <span class="material-icons-round">menu</span>
-                    <div class="projectInfo">
+                    <div class="projectInfo" tabindex="-1">
                         <div class="projectName">Task</div>
 
                     </div>
-                    <div class="editProject" tabindex="0">
-                        <span class="material-icons-round">more_vert</span>
-                        <span class="option">
+                    <div class="editProject" data-dropdown>
+                        <span class="material-icons-round" data-dropdown-button="">more_vert</span>
+                        <div class="option">
                             <button>Rename</button>
                             <button>Delete</button>
-                        </span>
+                        </div>
                     </div>
                 </div>
                 <form id="projectForm" class="hidden" autocomplete="off">
