@@ -200,9 +200,22 @@ and not his parent .editProject */
 
     position: relative;             
 }
-.editProject:focus .option{
+/* .editProject:not(:hover) .option{
+    visibility: hidden;
+} */
+.editProject:focus-within .option{
     visibility: visible;
 }
+/* :not(.editProject):hover .option{
+    visibility: hidden;
+} */
+
+/* .project:hover .option{
+    visibility: hidden;
+} */
+/* .optionVisible{
+    visibility: visible;
+} */
 /* option:not(:hover){
     visibility: hidden;
 } */
