@@ -39,9 +39,33 @@ const showRenameForm = (e) =>{
     let tileNode = e.target.parentNode.parentNode.parentNode;
     let index = tileNode.dataset.project;
 
+    let haveForm = checkFormExist();
+    console.log(haveForm);
+    if(haveForm === true){
+        removeRenameForm();
+        displayRenamedProject();
+        console.log("remove");
+    }
+
     createRenameForm(tileNode);
+    animateRenameForm();
+    //put focus on input field when show
+    document.getElementById("projectRenameInput").focus();
+
+    //hide the tile node temporarily 
     tileNode.classList.add("hidden");
 }
+//check to see if the form already exist
+const checkFormExist = () =>{
+    console.log("checking");
+    if (document.querySelector("#renameForm") != null){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 
 //createRenameForm
 const createRenameForm = (tileNode) => {
@@ -90,29 +114,38 @@ const createRenameForm = (tileNode) => {
     cancel.value = "cancel";
     formButtons.appendChild(cancel);
 
+    //add event listener to the rename and cancel button
     rename.addEventListener("click", function(e){
         processRenameInput(tileNode);
         e.preventDefault();
     });
     cancel.addEventListener("click", function(){
-        removeRenameForm(tileNode);
-        displayRenamedProject(tileNode);
+        removeRenameForm();
+        displayRenamedProject();
     });
 }
+//animate form
+const animateRenameForm = () =>{
+    const form = document.querySelector("#renameForm");
+    form.classList.replace("hidden", "visible");
+}
+
 //process the inputed renamed project
 const processRenameInput = (tileNode) =>{
     let renameInput = document.getElementById("projectRenameInput").value;
     const projectName = tileNode.querySelector(".projectName");
     projectName.textContent = renameInput;
 
-    displayRenamedProject(tileNode);
+    displayRenamedProject();
     removeRenameForm();
     
 }
 
 //display renamed project
-const displayRenamedProject = (tileNode) => {
-    tileNode.classList.remove("hidden");
+const displayRenamedProject = () => {
+    const hiddenTile = document.querySelector("div.hidden");
+    console.log(hiddenTile);
+    hiddenTile.classList.remove("hidden");
 }
 
 //remove the rename form from flow
