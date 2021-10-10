@@ -116,6 +116,8 @@ body{
     flex-direction: row;
     flex:1;
 }
+
+/* css for .leftPanel */
 .leftPanel{
     background-color: #15202b;
     display: flex;
@@ -172,7 +174,6 @@ button ,li, form, .tile{
 button:hover,
 form:hover{
     background-color: #1a2a38;
-    border:solid 2px #1a2a38;
 }
 
 .projectInfo{
@@ -189,6 +190,17 @@ form:hover{
     background-color: var(--accentDark);
     border-radius: 30px;
     vertical-align: center;
+}
+
+.selected{
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+    border-left: solid 2px var(--accent) !important;
+    background-color: #1f8d4d5d;
+}
+
+.selected:hover{
+    background-color: #1f8d4d7a !important;
 }
 /* css for editProject part */
 
@@ -229,7 +241,8 @@ form:hover{
 }
 
 .project #projectForm, 
-.project #renameForm {
+.project #renameForm,
+#listForm{
     display:flex;
     align-items:flex-start;
     opacity: 1;
@@ -301,14 +314,23 @@ input[type=text]{
     font-weight: bold;
 }
 .projectSubmitBtn,
-.rename-renameBtn{
+.rename-renameBtn,
+.listSubmitBtn{
     background-color: var(--accentDark);
 }
 .projectCancelBtn,
-.rename-cancelBtn{
+.rename-cancelBtn,
+.listCancelBtn{
     background-color: rgb(190, 4, 4);
 }
 
+button:hover, 
+input[type="button"]:hover,
+input[type="submit"]:hover{
+    opacity: 0.9;
+}
+
+/* css for right panel */
 .rightPanel{
     background-color: #192734;
     display: flex;
