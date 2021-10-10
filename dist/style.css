@@ -221,7 +221,7 @@ button ,li, form, .tile{
     padding:4px;
     box-shadow: 0 2px 5px rgba(0,0,0, 0.4);
     transform: translateY(+10px) ;
-    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out;
+    transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
     
     /* read above comment */
     position:absolute;
@@ -242,12 +242,14 @@ button ,li, form, .tile{
     align-items:flex-start;
 }
 .hidden{
-    visibility: hidden;
+    pointer-events: none;
+    opacity: 0;
     position: absolute;
     max-height:0;
 }
 .visible{
-    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
     position: relative;
     max-height: 500px;
     transition: max-height 1.2s ease-out;

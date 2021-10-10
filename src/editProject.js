@@ -8,36 +8,45 @@ function editProjectEventListener(){
         option.lastElementChild.addEventListener("click", deleteProject);
     });
 
-    
-    document.addEventListener("click", e =>{
-        const isDropdownButton = e.target.matches("[data-dropdown-button]");
-        //focus with-in function = the drop down wont disapear if you click on drop down button
-        if(!isDropdownButton && e.target.closest('[data-dropdown]') != null){
+    document.addEventListener("click", showDropDown);
+
+}
+//display dropdown menu of editProject
+const showDropDown = (e) =>{
+    const isDropdownButton = e.target.matches("[data-dropdown-button]");        
+
+    //focus with-in function = the drop down wont disapear if you click on drop down menu
+    if(!isDropdownButton && e.target.closest('[data-dropdown]') != null){
+        return;
+    }
+
+    let currentDropDown;
+    //if it is then show form by class .active
+    if(isDropdownButton){
+        currentDropDown = e.target.closest("[data-dropdown]");
+        currentDropDown.classList.toggle("active");
+    }
+    //if click other dropdown then other disappear
+    document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
+
+        console.log(currentDropDown);           //if click anywhere else currentDropDown = undefined meaning all active ones are closed
+        if(dropdown === currentDropDown){       //if its the current button then do nth
             return;
         }
-        let currentDropDown
-        //if it is then show form
-        if(isDropdownButton){
-            currentDropDown = e.target.closest("[data-dropdown]");
-            currentDropDown.classList.toggle("active");
-        }
-        //if click other dropdown then other disappear
-        document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
-
-            console.log(currentDropDown);           //if click anywhere else currentDropDown = undefined meaning all active one closes
-            if(dropdown === currentDropDown){
-                return;
-            }
-            //basically close all other drop down before open another
-            dropdown.classList.remove("active");
-        });
+        //basically close all dropdown other drop down before open another
+        dropdown.classList.remove("active");
     });
 }
 
+
+
 //show option to rename or delete project
 const showRenameForm = (e) =>{
-    let tileNode = e.target.parentNode.parentNode.parentNode;
+    let editProjectNode = e.target.parentNode.parentNode;
+    let tileNode = editProjectNode.parentNode;
     let index = tileNode.dataset.project;
+
+    hideDropDown(editProjectNode);       
 
     let haveForm = checkFormExist();
     console.log(haveForm);
@@ -55,6 +64,11 @@ const showRenameForm = (e) =>{
     //hide the tile node temporarily 
     tileNode.classList.add("hidden");
 }
+//when form open hide the dropdown because animation could show when div is visible again
+const hideDropDown = (editProjectNode) => {
+    editProjectNode.classList.remove('active');
+}
+
 //check to see if the form already exist
 const checkFormExist = () =>{
     console.log("checking");
