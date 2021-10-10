@@ -236,7 +236,8 @@ button ,li, form, .tile{
 
 /* form stuff on projects */
 
-.project #projectForm, .project #renameForm{
+.project #projectForm, 
+.project #renameForm{
     display:flex;
     align-items:flex-start;
 }
