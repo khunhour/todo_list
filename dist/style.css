@@ -56,7 +56,6 @@ body{
 .label{
     background-color: var(--dark1);
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
     padding:10px;
@@ -110,12 +109,25 @@ body{
     background-color: var(--whiteText);
 }
 
-
+/* css for content below logo */
 
 .content{
     display:flex;
     flex-direction: row;
     flex:1;
+}
+.leftPanel{
+    background-color: #15202b;
+    display: flex;
+    flex-direction: column;
+    color:#eaebec;
+    padding:20px;
+    width:350px;
+}
+.leftPanel h2{
+    margin-top: 0;
+    padding-bottom:5px;
+    border-bottom: solid 2px white;
 }
 .leftPanel .material-icons-round{
     margin-right: 5px;
@@ -127,15 +139,7 @@ body{
     margin-right: 5px;
     margin-left:10px;
 }
-.leftPanel{
-    background-color: #15202b;
-    display: flex;
-    flex-direction: column;
-    color:#eaebec;
-    padding:20px;
-    width:350px;
-    /* box-shadow: 0 2px 5px rgba(0,0,0, 0.4); */
-}
+
 .home{
     display: flex;
     flex-direction: column;
@@ -146,11 +150,7 @@ body{
     margin-top: 15px;
 }
 
-.leftPanel h2{
-    margin-top: 0;
-    padding-bottom:5px;
-    border-bottom: solid 2px white;
-}
+
 button ,li, form, .tile{
     font-family: 'Alata', sans-serif;
     margin: 3px 0;
@@ -167,10 +167,10 @@ button ,li, form, .tile{
     box-sizing: border-box;
     cursor: pointer;
 }
-.leftPanel .tile:focus{
-    border-left: solid 2px white !important;
-}
-.leftPanel .tile:hover, button:hover, form:hover{
+
+.leftPanel .tile:hover, 
+button:hover,
+form:hover{
     background-color: #1a2a38;
     border:solid 2px #1a2a38;
 }
@@ -193,10 +193,8 @@ button ,li, form, .tile{
 /* css for editProject part */
 
 .editProject{
-    /* opacity: 0; */
     display: flex;
     align-items: center;
-    justify-self: self-end;
     margin-left:auto;
     /* without posotion relative in editproject the 
     position absolute in .option will be based on window 
@@ -230,30 +228,36 @@ button ,li, form, .tile{
     color:white;
 }
 
-/* form:not(:focus){
-    display: none !important; 
-} */
-
-/* form stuff on projects */
-
 .project #projectForm, 
-.project #renameForm{
+.project #renameForm {
     display:flex;
     align-items:flex-start;
-}
-.hidden{
-    pointer-events: none;
-    opacity: 0;
-    position: absolute;
-    max-height:0;
-}
-.visible{
-    pointer-events: auto;
     opacity: 1;
+    pointer-events: auto;
+    position: relative;
+    transition-delay: 1s;
+    max-height: 500px;
+    transition: max-height 0.8s ease-out, opacity 300ms ease-in-out;
+}
+
+.hidden{
+    pointer-events: none !important;
+    position: absolute !important;
+    max-height:0 !important;
+
+    /* do nth but avoid opacity transition when position absolute */
+    transition: max-height 1s ease-out !important;    
+
+    opacity: 0 !important;
+}
+
+/* .visible{
+    pointer-events: auto;
+    opacity: 1 !important; 
     position: relative;
     max-height: 500px;
     transition: max-height 1.2s ease-out;
-}
+} */
 .projectIcon{
     margin-top: 3px;
 }
@@ -335,7 +339,7 @@ li{
     align-items: flex-start;
     flex-direction: row;
     justify-content: space-between;
-    height:auto;
+    height: auto;
     padding: 10px;
     margin-bottom: 5px;
     border-bottom: solid 1px white;
@@ -358,8 +362,8 @@ ul .material-icons-round{
 /* checkmark button */
 .unchecked{
     width: 14px;
-    height:14px;
-    border:solid 2px white ;
+    height: 14px;
+    border: solid 2px white ;
     border-radius: 50%;
     margin-top: 5px;
     margin-right: 5px;

@@ -58,6 +58,7 @@ const showRenameForm = (e) =>{
 
     createRenameForm(tileNode);
     animateRenameForm();
+
     //put focus on input field when show
     document.getElementById("projectRenameInput").focus();
 
@@ -80,7 +81,6 @@ const checkFormExist = () =>{
     }
 }
 
-
 //createRenameForm
 const createRenameForm = (tileNode) => {
 
@@ -90,6 +90,10 @@ const createRenameForm = (tileNode) => {
     const form = document.createElement("form");
     form.setAttribute("id", "renameForm");
     form.setAttribute("autocomplete", "off");
+
+    //adding hidden pureply for animation when removing it
+    form.classList.add("hidden");
+
     tileNode.parentNode.insertBefore(form, tileNode);
 
     //menu icon part
@@ -138,10 +142,14 @@ const createRenameForm = (tileNode) => {
         displayRenamedProject();
     });
 }
-//animate form
+//animate rename form when pop up
 const animateRenameForm = () =>{
     const form = document.querySelector("#renameForm");
-    form.classList.replace("hidden", "visible");
+
+    //setting time out wait for 1ms after the dom is created then remove hidden
+    setTimeout(function(){
+        form.classList.remove("hidden");
+    },1);
 }
 
 //process the inputed renamed project
