@@ -1,34 +1,45 @@
 
 
-
 function listEvent(){
     const addList = document.querySelector("#addList");
     addList.addEventListener("click", showListForm);
 
+    const listCancel = document.querySelector(".listCancelBtn");
+    listCancel.addEventListener("click", hideListForm);
+    
+    const listSubmit = document.getElementById("listForm");
+    listSubmit.addEventListener("submit", processListInput);
+
     const check = document.querySelector(".unchecked");
     check.addEventListener("click", turnCheckMark);
 }
+
 // pop up the project form
 const showListForm = () => {
     const ListForm = document.querySelector("#listForm");
-    ListForm.classList.replace("hidden", "visible");
+    ListForm.classList.remove("hidden");
 }
 
 //hide List form
-const hideListForm = () => {
-    const ListForm = document.querySelector("#ListForm");
-    const ListInput = document.querySelector('#ListInput');
+const hideListForm = (e) => {
+    const listForm = document.querySelector("#listForm");
+    const listInput = document.querySelector('#listInput');
 
-    ListInput.value = "";
-    ListForm.classList.replace("visible", "hidden");
+    listInput.value = "";
+    listForm.classList.add("hidden");
 }
-//function to add event listener to project for showing that project notes
-function projectsEventListener(){
-    const projects = document.querySelectorAll(".projectInfo");
-    projects.forEach((project) =>{
-        project.addEventListener("click", showNote);
-    });
+function processListInput(e){
+    console.log();
 }
+
+
+//update the title
+function updateTitle(nameNode){
+    const title = document.querySelector(".title");
+    console.log(title);
+    title.textContent = nameNode.textContent;
+}
+
 //display note
 function showNote(e){
 
@@ -55,4 +66,4 @@ function turnCheckMark(){
 }
 
 
-export {projectsEventListener, showNote, listEvent};
+export {updateTitle, showNote, listEvent};

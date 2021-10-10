@@ -1,4 +1,4 @@
-import { projectsEventListener, showNote} from "./note";
+import { showNote, updateTitle} from "./note";
 import { showRenameForm , deleteProject} from "./editProject";
 
 const createEventListener = () =>{
@@ -12,8 +12,11 @@ const createEventListener = () =>{
     const submit = document.getElementById("projectForm");
     submit.addEventListener("submit", processProjectInput);
     
-}
 
+    const leftPanel = document.querySelector(".leftPanel");
+    leftPanel.addEventListener("click", checkTile);
+}
+//process the input and prepare to create element project
 const processProjectInput = (e) => {
     let projectInput = document.getElementById("projectInput").value;
     addProject(projectInput);
@@ -25,7 +28,7 @@ const processProjectInput = (e) => {
 const showProjectForm = () => {
     
     const projectForm = document.querySelector("#projectForm");
-    projectForm.classList.replace("hidden", "visible");
+    projectForm.classList.remove("hidden");
     //focus on input field
     document.getElementById("projectInput").focus();
 }
@@ -36,7 +39,7 @@ const hideProjectForm = () => {
     const projectInput = document.querySelector('#projectInput');
 
     projectInput.value = "";
-    projectForm.classList.replace("visible", "hidden");
+    projectForm.classList.add("hidden");
 }
 
 //create a project and add it to the list of projects in html
@@ -96,11 +99,6 @@ const addProject = (textInput) => {
     projectInfo.addEventListener("click", showNote);
 }
 
-const addEventListenerToButton = (button) => {
-    button.addEventListener("click", )
-}
-
-
 
 // create a span icon of google material icons
 const createSpanIcon = (name) => {
@@ -114,6 +112,39 @@ const createSpanIcon = (name) => {
 const findNextDataset = () => {
     const allprojects = document.querySelectorAll("[data-project]");
     return allprojects.length;
+}
+
+//check to see what tile is selected
+function checkTile(e){
+    console.log("checklog");
+    let homeTile = e.target.closest(".home .tile");
+    let projectTile = e.target.closest(".project .tile");
+
+    console.log(e.target.tagName);
+    if(homeTile != null){
+        const title = homeTile.querySelector("[data-name]");
+        console.log(homeTile);
+        console.log(title.textContent);
+        selectTile(homeTile);
+        updateTitle(title);
+    }
+    else if(projectTile != null){
+        const title = projectTile.querySelector(".projectName");
+
+        selectTile(projectTile);
+        updateTitle(title);
+    }
+    else{
+        return;
+    }
+}
+
+//when selecting a tile from left panel apply css
+const selectTile = (node) =>{
+    const selectedTile = document.querySelector(".selected");   
+    selectedTile.classList.remove("selected");                  //remove class selected from old tile
+
+    node.classList.add("selected");                             //add class selected to current tile
 }
 
 export {createEventListener, createSpanIcon};

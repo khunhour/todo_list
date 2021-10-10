@@ -8,6 +8,7 @@ function editProjectEventListener(){
         option.lastElementChild.addEventListener("click", deleteProject);
     });
 
+    //event listener for drop doen editProject
     document.addEventListener("click", showDropDown);
 
 }
@@ -21,20 +22,18 @@ const showDropDown = (e) =>{
     }
 
     let currentDropDown;
-    //if it is then show form by class .active
-    if(isDropdownButton){
+    
+    if(isDropdownButton){                                           //if it is then show form by class .active
         currentDropDown = e.target.closest("[data-dropdown]");
         currentDropDown.classList.toggle("active");
     }
     //if click other dropdown then other disappear
     document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
-
-        console.log(currentDropDown);           //if click anywhere else currentDropDown = undefined meaning all active ones are closed
+                                                //if click anywhere else currentDropDown = undefined meaning all active ones are closed
         if(dropdown === currentDropDown){       //if its the current button then do nth
             return;
-        }
-        //basically close all dropdown other drop down before open another
-        dropdown.classList.remove("active");
+        }      
+        dropdown.classList.remove("active");    //basically close all dropdown other drop down before open another
     });
 }
 
@@ -49,21 +48,16 @@ const showRenameForm = (e) =>{
     hideDropDown(editProjectNode);       
 
     let haveForm = checkFormExist();
-    console.log(haveForm);
     if(haveForm === true){
         removeRenameForm();
         displayRenamedProject();
-        console.log("remove");
     }
 
     createRenameForm(tileNode);
     animateRenameForm();
 
-    //put focus on input field when show
-    document.getElementById("projectRenameInput").focus();
-
-    //hide the tile node temporarily 
-    tileNode.classList.add("hidden");
+    document.getElementById("projectRenameInput").focus();          //put focus on input field when show
+    tileNode.classList.add("hidden");                               //hide the tile node temporarily 
 }
 //when form open hide the dropdown because animation could show when div is visible again
 const hideDropDown = (editProjectNode) => {
@@ -72,7 +66,6 @@ const hideDropDown = (editProjectNode) => {
 
 //check to see if the form already exist
 const checkFormExist = () =>{
-    console.log("checking");
     if (document.querySelector("#renameForm") != null){
         return true;
     }
@@ -129,7 +122,7 @@ const createRenameForm = (tileNode) => {
     const cancel = document.createElement("input");
     cancel.classList.add("rename-cancelBtn");
     cancel.type = "button";
-    cancel.value = "cancel";
+    cancel.value = "Cancel";
     formButtons.appendChild(cancel);
 
     //add event listener to the rename and cancel button
@@ -166,7 +159,6 @@ const processRenameInput = (tileNode) =>{
 //display renamed project
 const displayRenamedProject = () => {
     const hiddenTile = document.querySelector("div.hidden");
-    console.log(hiddenTile);
     hiddenTile.classList.remove("hidden");
 }
 
@@ -180,8 +172,16 @@ const removeRenameForm = () => {
 const deleteProject = (e) => {
     let index = e.target.parentNode.parentNode.parentNode.dataset.project;
     const tile = document.querySelector(`[data-project="${index}"]`);
+
+    if(tile.classList.contains("selected")){                //if the tile you want to delete is selected always select the today tile 
+        const today = document.querySelector("#today");
+        today.classList.add("selected");    
+    }
+
     tile.remove();
     rearrangeProject(index);
+
+    
 }
 
 
