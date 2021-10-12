@@ -10,8 +10,14 @@ function listEvent(){
     const listSubmit = document.getElementById("listForm");
     listSubmit.addEventListener("submit", processListInput);
 
-    const check = document.querySelector(".unchecked");
-    check.addEventListener("click", turnCheckMark);
+    const uncheckBoxes = document.querySelectorAll(".unchecked");
+    uncheckBoxes.forEach((box)=>{
+        box.addEventListener("click", styleCompletesTask);
+    });
+
+    const starOutline = document.querySelector(".star-outline");
+    starOutline.addEventListener("click", fillStar);
+    
 }
 
 // pop up the project form
@@ -56,14 +62,24 @@ function createList(){
 
 
 
-function turnCheckMark(){
-    if(check.classList.contains("checked")){
-        check.classList.remove("checked");
-    }
-    else{
-        check.classList.add("checked");
-    }
+function styleCompletesTask(e){
+    let uncheckedNode = e.target;
+    let pNode = e.target.parentNode.parentNode.lastElementChild;
+    let taskTile = e.target.closest("li");
+
+    uncheckedNode.classList.toggle("checked");
+    pNode.classList.toggle("lineThrough");
+    taskTile.classList.toggle("fade");
 }
 
+function fillStar(e){
+    let starOutline = e.target;
+    starOutline.classList.toggle("listHidden");
+    
+    let starFilled = e.target.nextElementSibling;
+    starFilled.classList.toggle("listHidden");
+    console.log(starFilled);
+    console.log(starOutline);
+}
 
 export {updateTitle, showNote, listEvent};

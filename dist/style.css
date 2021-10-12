@@ -263,7 +263,6 @@ form:hover{
 
     /* do nth but avoid opacity transition when position absolute */
     transition: max-height 1s ease-out !important;    
-
     opacity: 0 !important;
 }
 
@@ -392,13 +391,12 @@ ul .material-icons-round{
 
 /* checkmark button */
 .unchecked{
-    width: 14px;
-    height: 14px;
+    width: 13px;
+    height: 13px;
     border: solid 2px white ;
     border-radius: 50%;
     margin-top: 5px;
     margin-right: 5px;
-    
 }
 .checked{
     background-image: url("./images/checkmark.png");
@@ -411,18 +409,22 @@ ul .material-icons-round{
 .lineThrough{
     text-decoration:line-through;
 }
-.textFade{
-    opacity: 0.5;
+.fade{
+    opacity: 0.6;
 }
-
-.starOutline{
+.listHidden{
+    opacity: 0;
+    position: absolute;
+    pointer-events: none;
+}
+.list-right .star-outline{
+    pointer-events: visible;
     width:24px;
 }
 .important{
-    position: absolute;
-    color: yellow;
-    opacity: 0;
-    z-index: 2;
+    pointer-events: none;
+    color: #fec810;
+    /* z-index: 2; */
 }
 .cancel{
     color: red;
@@ -433,18 +435,18 @@ ul p{
     margin:0 5px;
 }
 .list-right{
-    display: flex;
+    display:flex;
     flex-direction: row;
-    margin-left:15px;
-    justify-content: space-evenly;
+    margin-left:10px;
+    position: relative;
 }
 .list-right .material-icons-round{
+    padding:1px;
+    margin:2px;
     transform:scale(1.1);
     border-radius: 3px;
-    transition: background-color 150ms ease-in-out, transform 150ms ease-in-out;
 }
 .list-right .material-icons-round:hover{
-    transform:scale(1.1);
     background-color:#253c50;
     
 }
