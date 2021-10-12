@@ -1,18 +1,19 @@
 import {createSpanIcon} from "./createproject"
+import {updateTitle} from "./note"
 
 //fire event listener for editing projects
 function editProjectEventListener(){
     const options = document.querySelectorAll('.option');
     options.forEach((option) =>{
-        option.firstElementChild.addEventListener("click", showRenameForm);
-        option.lastElementChild.addEventListener("click", deleteProject);
+        option.firstElementChild.addEventListener("click", showRenameForm);         //rename option
+        option.lastElementChild.addEventListener("click", deleteProject);           //delete option
     });
 
-    //event listener for drop doen editProject
+    //event listener for drop down editProject
     document.addEventListener("click", showDropDown);
 
 }
-//display dropdown menu of editProject
+//display dropdown menu of editProject (mainly animation)
 const showDropDown = (e) =>{
     const isDropdownButton = e.target.matches("[data-dropdown-button]");        
 
@@ -45,9 +46,9 @@ const showRenameForm = (e) =>{
     let tileNode = editProjectNode.parentNode;
     let index = tileNode.dataset.project;
 
-    hideDropDown(editProjectNode);       
+    hideDropDown(editProjectNode);          //hide dropdown option
 
-    let haveForm = checkFormExist();
+    let haveForm = checkFormExist();        //check if there is another form, if there is then close it
     if(haveForm === true){
         removeRenameForm();
         displayRenamedProject();
@@ -57,7 +58,7 @@ const showRenameForm = (e) =>{
     animateRenameForm();
 
     document.getElementById("projectRenameInput").focus();          //put focus on input field when show
-    tileNode.classList.add("hidden");                               //hide the tile node temporarily 
+    tileNode.classList.add("hidden");        //hide the tile (which is replaced by the form)                       //hide the tile node temporarily 
 }
 //when form open hide the dropdown because animation could show when div is visible again
 const hideDropDown = (editProjectNode) => {
@@ -152,6 +153,7 @@ const processRenameInput = (tileNode) =>{
     projectName.textContent = renameInput;
 
     displayRenamedProject();
+    updateTitle(projectName);           //update title on right panel
     removeRenameForm();
     
 }
@@ -173,9 +175,11 @@ const deleteProject = (e) => {
     let index = e.target.parentNode.parentNode.parentNode.dataset.project;
     const tile = document.querySelector(`[data-project="${index}"]`);
 
-    if(tile.classList.contains("selected")){                //if the tile you want to delete is selected always select the today tile 
+    if(tile.classList.contains("selected")){                //if the tile you want to delete is selected always select the today tile after and update 
         const today = document.querySelector("#today");
-        today.classList.add("selected");    
+        const nameNode = today.querySelector("[data-name]");
+        today.classList.add("selected");
+        updateTitle(nameNode);    
     }
 
     tile.remove();

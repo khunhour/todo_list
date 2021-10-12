@@ -52,6 +52,7 @@ body{
 }
 .theme{
     margin-right:0px;
+    user-select: none;
 }
 .label{
     background-color: var(--dark1);
@@ -125,6 +126,7 @@ body{
     color:#eaebec;
     padding:20px;
     width:350px;
+    user-select: none;
 }
 .leftPanel h2{
     margin-top: 0;
@@ -150,6 +152,7 @@ body{
     display: flex;
     flex-direction: column;
     margin-top: 15px;
+    
 }
 
 
@@ -329,6 +332,12 @@ input[type="button"]:hover,
 input[type="submit"]:hover{
     opacity: 0.9;
 }
+
+/* css for drag and drop event */
+.dragging{
+    opacity: 0.5;
+}
+
 
 /* css for right panel */
 .rightPanel{

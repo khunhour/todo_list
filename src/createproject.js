@@ -1,5 +1,6 @@
 import { showNote, updateTitle} from "./note";
 import { showRenameForm , deleteProject} from "./editProject";
+import { dragStartEndEvent } from "./dragAndDrop";
 
 const createEventListener = () =>{
     //event listener for creating a form for adding projects
@@ -56,6 +57,7 @@ const addProject = (textInput) => {
 
     //menu three lines icon
     const menuIcon = createSpanIcon("menu");
+    menuIcon.setAttribute("data-drag", "");
     container.appendChild(menuIcon);
     //name and number status
     const projectInfo = document.createElement("div");
@@ -94,9 +96,11 @@ const addProject = (textInput) => {
     option.appendChild(renameBtn);
     option.appendChild(deleteBtn);
 
+    dragStartEndEvent(container);
     renameBtn.addEventListener("click", showRenameForm);
     deleteBtn.addEventListener("click", deleteProject);
     projectInfo.addEventListener("click", showNote);
+
 }
 
 
@@ -116,15 +120,12 @@ const findNextDataset = () => {
 
 //check to see what tile is selected
 function checkTile(e){
-    console.log("checklog");
     let homeTile = e.target.closest(".home .tile");
     let projectTile = e.target.closest(".project .tile");
 
-    console.log(e.target.tagName);
     if(homeTile != null){
         const title = homeTile.querySelector("[data-name]");
-        console.log(homeTile);
-        console.log(title.textContent);
+        
         selectTile(homeTile);
         updateTitle(title);
     }
