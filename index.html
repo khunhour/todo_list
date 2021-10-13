@@ -64,10 +64,7 @@
                     
                     <div class="editProject" data-dropdown>
                         <span class="material-icons-round" data-dropdown-button>more_vert</span>
-                        <div class="option">
-                            <button>Rename</button>
-                            <button>Delete</button>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -79,10 +76,7 @@
                     </div>
                     <div class="editProject" data-dropdown>
                         <span class="material-icons-round" data-dropdown-button>more_vert</span>
-                        <div class="option">
-                            <button>Rename</button>
-                            <button>Delete</button>
-                        </div>
+                        
                     </div>
                 </div>
                 <div class="tile" data-project="2">
@@ -93,10 +87,7 @@
                     </div>
                     <div class="editProject" data-dropdown>
                         <span class="material-icons-round" data-dropdown-button="">more_vert</span>
-                        <div class="option">
-                            <button>Rename</button>
-                            <button>Delete</button>
-                        </div>
+                        
                     </div>
                 </div>
                 <form id="projectForm" class="hidden" autocomplete="off">
@@ -112,64 +103,52 @@
                     </div>
                 </form>
                 <button id="addProject"><span class="material-icons-round">add_circle_outlined</span>Add Project</button>
+                <div class="option hidden">
+                    <button>Rename</button>
+                    <button>Delete</button>
+                </div>
             </div>
         </div>
         <div id="rightPanel" class="rightPanel">
             <div class="title">Today</div>
             <div class="list-todo">
                 <ul>
-                    <li data-list="0">
-                        <div class="list-left">
-                            <div>
-                                <div class="unchecked"></div>
-                            </div>
-                            <p>go cry in the bathroomf sd fsdf dsf ds ff  dsf sd f sd f sdf sd fd sf fs fsd f sdf ds fds f ds f</p>
-                        </div>
+                    <li data-list="0">       
+                        <div class="unchecked"></div>
+                        <p>go cry in the bathroomf sd fsdf dsf  f sdf ds fds f ds f</p>
                         <div class="list-right">
-                           
                             <span class="material-icons-round star-outline">star_outline</span>
                             <span class="material-icons-round important listHidden">star</span>
-                            <span class="material-icons-round" data-dropdown-button>more_vert</span> 
-                            
+                            <span class="material-icons-round delete">clear</span>
                         </div>
                     </li>
-                    <li data-list="1">
-                        <div class="list-left">
-                            <div>
-                                <div class="unchecked"></div>
-                            </div>
-                            <p>go cry in the bathroomf s</p>
+                    <li data-list="1">       
+                        <div class="unchecked"></div>
+                        <div class="list-details">
+                            <textarea data-title maxlength="60" readonly>go cry in the bathroomf sd fsdf dsf  f sdf ds fds f ds f</textarea>
+                            <textarea class="hidden">Helloooo,fdsjfksnflfsdifjdslfkmsdfio</textarea>
                         </div>
                         <div class="list-right">
-                           
                             <span class="material-icons-round star-outline">star_outline</span>
-                            <span class="material-icons-round important">star</span>
-                            <span class="material-icons-round" data-dropdown-button>more_vert</span> 
-                            
-                        </div>
-                    </li>
-                    <li data-list="3">
-                        <div class="list-left">
-                            <div class="checkmark">
-                                <span class="material-icons-round ">radio_button_unchecked</span>
-                                <span class="material-icons-round ">check_circle</span>
+                            <span class="material-icons-round important listHidden">star</span>
+                            <span class="material-icons-round delete">clear</span>
+                            <div class="editProject" data-dropdown>
+                                <span class="material-icons-round" data-dropdown-button="">more_vert</span>
+                                <div class="option">
+                                    <button>Rename</button>
+                                    <button>Delete</button>
+                                </div>
                             </div>
-                            <!-- <input id="box1" type="checkbox" class="listCheckbox">
-                            <label for="box1">
-                                <span></span>
-                            </label> -->
-                            <p>go f sdf  dsf sd f sd f sdf sd fd sf fs fsd f sdf ds fds f ds f</p>
-                        </div>
-                        <div class="list-right">
-                            <span class="material-icons-round">edit_note</span>  
-                            <span class="material-icons-round">delete</span>  
-                            
                         </div>
                     </li>
+                    
                 </ul>
                 <form id="listForm" class="hidden" autocomplete="off">
                     <div class="inputField">
-                        <input type="text" id="listInput">
+                        <label>Title:</label>
+                        <input type="text" id="listInput" placeholder="What to do?">
+                        <label>Details:</label>
+                        <textarea placeholder="eg: I'm just gonna procrastinate, aren't I?"></textarea>
                         <div class="formButtons">
                             <input type="submit" class="listSubmitBtn" value="Add">
                             <input type="button" class="listCancelBtn" value="Cancel">
