@@ -10,15 +10,44 @@ function listEvent(){
     const listSubmit = document.getElementById("listForm");
     listSubmit.addEventListener("submit", processListInput);
 
-    const uncheckBoxes = document.querySelectorAll(".unchecked");
-    uncheckBoxes.forEach((box)=>{
-        box.addEventListener("click", styleCompletesTask);
-    });
+    // const uncheckBoxes = document.querySelectorAll(".unchecked");
+    // uncheckBoxes.forEach((box)=>{
+    //     box.addEventListener("click", styleCompletesTask);
+    // });
 
-    const starOutline = document.querySelector(".star-outline");
-    starOutline.addEventListener("click", fillStar);
+    const todoList = document.querySelector(".list-todo");
+    todoList.addEventListener("click", checkListEvent);
+    
+    // const starOutline = document.querySelector(".star-outline");
+    // starOutline.addEventListener("click", fillStar);
     
 }
+function checkListEvent(e){
+    let node = e.target;
+    let isStarIcon = e.target.matches(".star-outline");
+    let isCircleIcon = e.target.matches(".unchecked");
+    let isDeleteIcon = e.target.matches(".delete");
+    let isText = e.target.matches("[data-title]");
+
+    console.log(node);
+    if(isStarIcon){
+        fillStar(e);
+    }
+    else if(isCircleIcon){
+        styleCompletesTask(e);
+    }
+    else if(isDeleteIcon){
+        deleteList(e);
+    }
+    else if(isText){
+        showDetails(e);
+    }
+    else{
+        return;
+    }
+    
+}
+
 
 // pop up the project form
 const showListForm = () => {
@@ -64,7 +93,7 @@ function createList(){
 
 function styleCompletesTask(e){
     let uncheckedNode = e.target;
-    let pNode = e.target.parentNode.parentNode.lastElementChild;
+    let pNode = e.target.nextElementSibling;
     let taskTile = e.target.closest("li");
 
     uncheckedNode.classList.toggle("checked");
@@ -80,6 +109,19 @@ function fillStar(e){
     starFilled.classList.toggle("listHidden");
     console.log(starFilled);
     console.log(starOutline);
+
+    //some if statement here
+    
+}
+
+function deleteList(e){
+    let listNode = e.target.closest("li");
+    listNode.remove();
+}
+
+function showDetails(e){
+    let detail = e.target.nextElementSibling;
+    detail.classList.toggle("hidden");
 }
 
 export {updateTitle, showNote, listEvent};

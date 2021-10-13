@@ -13,6 +13,9 @@ function editProjectEventListener(){
     document.addEventListener("click", showDropDown);
 
 }
+
+
+
 //display dropdown menu of editProject (mainly animation)
 const showDropDown = (e) =>{
     const isDropdownButton = e.target.matches("[data-dropdown-button]");        
@@ -24,9 +27,12 @@ const showDropDown = (e) =>{
 
     let currentDropDown;
     
-    if(isDropdownButton){                                           //if it is then show form by class .active
+    if(isDropdownButton){                                               //if it is then show form by class .active
+        relocateOption(e);
         currentDropDown = e.target.closest("[data-dropdown]");
-        currentDropDown.classList.toggle("active");
+        setTimeout(function(){
+            currentDropDown.classList.toggle("active");
+        },1);                                           
     }
     //if click other dropdown then other disappear
     document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
@@ -182,12 +188,10 @@ const deleteProject = (e) => {
         updateTitle(nameNode);    
     }
 
+    revertOptionLocation();                                 //when delete a tile, move option div back to under project for stand by
     tile.remove();
     rearrangeProject(index);
-
-    
 }
-
 
 //rearrange data set after one has been deleted
 const rearrangeProject = (index) => {
@@ -199,7 +203,48 @@ const rearrangeProject = (index) => {
     });
 }
 
+//create option element
+function createOptionDropDown(e){
+    let container = e.target.parentNode;
+    console.log(container);
+    //onclick show rename and delete section
+    const option = document.createElement('div');
+    option.classList.add("option");
+    container.appendChild(option);
 
+    if(container.classList.contains(".editProject")){
+        const renameBtn = document.createElement('button');
+        renameBtn.textContent = "Rename";
+        option.appendChild(renameBtn);
+        renameBtn.addEventListener("click", showRenameForm);
+    }
+    //edit for edit list
 
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = "Delete";
+    option.appendChild(deleteBtn);
+
+    deleteBtn.addEventListener("click", deleteProject);
+}
+//
+function relocateOption(e){
+    let editProject = e.target.parentNode;
+    const option = document.querySelector(".project .option");
+    option.classList.remove("hidden");
+    editProject.appendChild(option);
+    
+    setTimeout(function(){
+        console.log("timeout")
+    },0);
+}
+
+function revertOptionLocation(){
+    const option = document.querySelector(".project .option");
+    const project = document.querySelector(".project");
+
+    option.classList.add("hidden");
+    project.appendChild(option);
+
+}
 
 export {editProjectEventListener, showRenameForm, deleteProject};

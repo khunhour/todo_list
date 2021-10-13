@@ -68,7 +68,6 @@ const addProject = (textInput) => {
     const projectName = document.createElement('div');
     projectName.classList.add("projectName");
     projectName.textContent = textInput;
-
     
     projectInfo.appendChild(projectName);
 
@@ -82,25 +81,7 @@ const addProject = (textInput) => {
     editIcon.setAttribute("data-dropdown-button","");
     editdiv.appendChild(editIcon);
 
-    //onclick show rename and delete section
-    const option = document.createElement('div');
-    option.classList.add("option");
-    editdiv.appendChild(option);
-
-    const renameBtn = document.createElement('button');
-    const deleteBtn = document.createElement('button');
-
-    renameBtn.textContent = "Rename";
-    deleteBtn.textContent = "Delete";
-    
-    option.appendChild(renameBtn);
-    option.appendChild(deleteBtn);
-
     dragStartEndEvent(container);
-    renameBtn.addEventListener("click", showRenameForm);
-    deleteBtn.addEventListener("click", deleteProject);
-    projectInfo.addEventListener("click", showNote);
-
 }
 
 

@@ -16,6 +16,7 @@
 html{
     width: 100%;
     height:100%;
+    overflow: hidden;
 }
 body{
     font-family: 'Alata';
@@ -228,6 +229,7 @@ form:hover{
     flex-direction: column;
     background: var(--whiteText);
     bottom:30px;
+    right:10px;
     z-index: 2;
     border-radius:3px;
     background-color: #273746;
@@ -287,11 +289,14 @@ form:hover{
     flex: 1;
     box-sizing: content-box;
 }
-input[type=text]{
+input[type=text],textarea{
     width:100%;
     box-sizing: border-box;
     font-family: 'Alata';
-    font-size:17px;
+    font-size:16px;
+    background-color: var(--whiteText);
+    border: none;
+    padding:5px;
 }
 .formButtons{
     margin-top:5px;
@@ -366,17 +371,14 @@ ul{
     flex-direction: column;
 }
 li{
+    display: flex;
     align-items: flex-start;
-    flex-direction: row;
-    justify-content: space-between;
     height: auto;
-    padding: 10px;
+    padding: 0;
+    padding-left: 5px;
     margin-bottom: 5px;
     border-bottom: solid 1px white;
-}
-.list-left{
-    display: flex;
-    flex-direction: row;
+    transition: transform 100ms ease-in-out;
 }
 
 .checkmark{
@@ -386,7 +388,7 @@ li{
 ul .material-icons-round{
     transform:scale(0.8);
     margin-right: 8px;
-    float: right;
+    margin-top: 10px;
 }
 
 /* checkmark button */
@@ -395,8 +397,8 @@ ul .material-icons-round{
     height: 13px;
     border: solid 2px white ;
     border-radius: 50%;
-    margin-top: 5px;
-    margin-right: 5px;
+    margin: 5px;
+    margin-top:13px;
 }
 .checked{
     background-image: url("./images/checkmark.png");
@@ -410,40 +412,52 @@ ul .material-icons-round{
     text-decoration:line-through;
 }
 .fade{
-    opacity: 0.6;
+    opacity: 0.7;
 }
 .listHidden{
     opacity: 0;
     position: absolute;
-    pointer-events: none;
-}
-.list-right .star-outline{
-    pointer-events: visible;
-    width:24px;
 }
 .important{
     pointer-events: none;
     color: #fec810;
-    /* z-index: 2; */
 }
 .cancel{
     color: red;
     background: white;
     border-radius: 50%;
 }
-ul p{
-    margin:0 5px;
+.list-details{
+    margin:0;
+    padding: 0;
+    flex:1;
 }
+ul p{
+    margin:0;
+    padding:8px;
+    flex:1;
+    padding-right:12px;
+}
+li textarea{
+    background-color: transparent;
+    color:var(--whiteText);
+    font-size: 18px;
+    height:40px;
+}
+
+li textarea:focus{
+    outline: none;
+}
+
 .list-right{
     display:flex;
-    flex-direction: row;
-    margin-left:10px;
+    padding:5px;
     position: relative;
 }
 .list-right .material-icons-round{
     padding:1px;
     margin:2px;
-    transform:scale(1.1);
+    transform:scale(1.05);
     border-radius: 3px;
 }
 .list-right .material-icons-round:hover{
@@ -451,9 +465,26 @@ ul p{
     
 }
 
+textarea{
+    margin-top:5px;
+    max-height:100px;
+    overflow: none;
+    resize: none;
+}
+
+.list-todo form{
+    padding:10px 20px;
+    background-color: var(--dark1);
+}
 .list-todo button{
     padding-left:45px;
 }
-.list-todo button:hover, li:hover{
+.list-todo button:hover,
+li:hover{
     background-color: var(--dark1);
+    transform: scale(1.005);
+}
+.list-todo button:active,
+li:active{
+    transform:scale(1);
 }
