@@ -16,12 +16,30 @@ const createEventListener = () =>{
     const leftPanel = document.querySelector(".leftPanel");
     leftPanel.addEventListener("click", checkTile);
 }
+let projectList =[
+    {dataProject: 0, name: "Getting Started"},
+    {dataProject: 1, name: "The Odin Project"},
+    {dataProject: 2, name: "Task"}
+];
+
 //process the input and prepare to create element project
 const processProjectInput = (e) => {
     let projectInput = document.getElementById("projectInput").value;
+    let dataProject = findNextDataset();
+
+    const newProject = CreateProject(dataProject, projectInput);
+    projectList.push(newProject);
+
     addProject(projectInput);
     hideProjectForm();
     e.preventDefault();
+}
+
+const CreateProject = (dataProject, name) =>{
+    return{
+        dataProject,
+        name
+    }
 }
 
 // pop up the project form

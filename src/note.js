@@ -1,4 +1,4 @@
-import {revertOptionLocation} from "./editProject"
+import {editContainerEventListener, revertOptionLocation, hideDropDown} from "./editProject"
 
 function listEvent(){
     const addList = document.querySelector("#addList");
@@ -7,20 +7,15 @@ function listEvent(){
     const listCancel = document.querySelector(".listCancelBtn");
     listCancel.addEventListener("click", hideListForm);
     
-    const listSubmit = document.getElementById("listForm");
-    listSubmit.addEventListener("submit", processListInput);
+    // const listSubmit = document.getElementById("listForm");
+    // listSubmit.addEventListener("submit", processListInput);
 
-    // const uncheckBoxes = document.querySelectorAll(".unchecked");
-    // uncheckBoxes.forEach((box)=>{
-    //     box.addEventListener("click", styleCompletesTask);
-    // });
+    // const editCancelBtn = document.querySelector(".edit-listCancelBtn");
+    // editCancelBtn.addEventListener("click", hideEditform);
 
     const todoList = document.querySelector(".list-todo");
     todoList.addEventListener("click", checkListEvent);
-    
 
-    // const starOutline = document.querySelector(".star-outline");
-    // starOutline.addEventListener("click", fillStar);
     
 }
 function checkListEvent(e){
@@ -45,7 +40,7 @@ function checkListEvent(e){
         deleteList(e);
     }
     else if(isEditBtn){
-        console.log();
+        showEditForm(e);
     }
     else{
         return;
@@ -53,8 +48,7 @@ function checkListEvent(e){
     
 }
 
-
-// pop up the project form
+// pop up the add list form
 const showListForm = () => {
     const ListForm = document.querySelector("#listForm");
     ListForm.classList.remove("hidden");
@@ -65,11 +59,27 @@ const hideListForm = (e) => {
     const listForm = document.querySelector("#listForm");
     const listInput = document.querySelector('#listInput');
 
+    // let formNode = e.target.closest("form");
+    // const listInput = formNode.querySelector("")
+
     listInput.value = "";
     listForm.classList.add("hidden");
 }
+
 function processListInput(e){
+    const form = e.target.closest("form");
+    // const titleInput = form.querySelectorAll
+
+    //get inputs 
+    //create factory function to put all the info to object
+    //create DOM 
+    //hide drop down
+    //
+    // addTask();
+    // hideDropDown
+    e.preventDefault();
     console.log();
+
 }
 
 
@@ -91,8 +101,35 @@ function createList(){
     console.log("hi");
 }
 
+function showEditForm(e){
+    let editContainerNode = e.target.parentNode.parentNode;
+
+    hideDropDown(editContainerNode);
+    
+    relocateEditListForm(e);
+
+    
+    
+}
+function hideEditform(){
+
+}
+
+function insertLastInput(e){
+    const listNode = e.target.closest("li");
+    const inputs = listNode.querySelectorAll('input[type="text"]');
 
 
+}
+
+function relocateEditListForm(e){
+    let listNode = e.target.closest("li");
+    //index sth
+    const editListForm = document.getElementById("editListForm");
+    editListForm.classList.remove("hidden");
+    listNode.appendChild(editListForm);
+
+}
 
 
 
@@ -127,8 +164,10 @@ function deleteList(e){
 
 function showDetails(e){
     let detail = e.target.nextElementSibling;
-    console.log(detail);
-    detail.classList.toggle("hidden");
+    
+    setTimeout(function(){
+        detail.classList.toggle("hidden");
+    },0);
 }
 
 export {updateTitle, showNote, listEvent};

@@ -71,6 +71,7 @@ const showRenameForm = (e) =>{
     document.getElementById("projectRenameInput").focus();          //put focus on input field when show
     tileNode.classList.add("hidden");        //hide the tile (which is replaced by the form)                       //hide the tile node temporarily 
 }
+
 //when form open hide the dropdown because animation could show when div is visible again
 const hideDropDown = (editContainerNode) => {
     editContainerNode.classList.remove('active');
@@ -196,4 +197,4 @@ function revertOptionLocation(e){
     }
 }
 
-export {editContainerEventListener, showRenameForm, deleteProject, revertOptionLocation};
+export {editContainerEventListener, showRenameForm,hideDropDown, deleteProject, revertOptionLocation};
