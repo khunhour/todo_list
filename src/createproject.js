@@ -13,7 +13,6 @@ const createEventListener = () =>{
     const submit = document.getElementById("projectForm");
     submit.addEventListener("submit", processProjectInput);
     
-
     const leftPanel = document.querySelector(".leftPanel");
     leftPanel.addEventListener("click", checkTile);
 }
@@ -27,7 +26,6 @@ const processProjectInput = (e) => {
 
 // pop up the project form
 const showProjectForm = () => {
-    
     const projectForm = document.querySelector("#projectForm");
     projectForm.classList.remove("hidden");
     //focus on input field
@@ -73,7 +71,7 @@ const addProject = (textInput) => {
 
     //three dots on the right section
     const editdiv = document.createElement('div');
-    editdiv.classList.add('editProject');
+    editdiv.classList.add('editContainer');
     editdiv.setAttribute("data-dropdown","");
     container.appendChild(editdiv);
     //call function to create a span icon from google cuz im lazy

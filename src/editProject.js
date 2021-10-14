@@ -2,21 +2,31 @@ import {createSpanIcon} from "./createproject"
 import {updateTitle} from "./note"
 
 //fire event listener for editing projects
-function editProjectEventListener(){
-    const options = document.querySelectorAll('.option');
-    options.forEach((option) =>{
-        option.firstElementChild.addEventListener("click", showRenameForm);         //rename option
-        option.lastElementChild.addEventListener("click", deleteProject);           //delete option
-    });
+function editContainerEventListener(){
 
-    //event listener for drop down editProject
+    //event listener for drop down editContainer
     document.addEventListener("click", showDropDown);
 
+    //event listener for the option rename or delete project
+    const option = document.querySelector('.project .option');
+    option.firstElementChild.addEventListener("click", showRenameForm);         //rename option
+    option.lastElementChild.addEventListener("click", deleteProject);           //delete option
+
+    //event listener of renameForm's rename and cancel buttons
+    const formRenameBtn = document.querySelector(".rename-renameBtn");
+    formRenameBtn.addEventListener("click", function(e){
+        processRenameInput();
+        e.preventDefault();
+    });
+
+    const formCancelBtn = document.querySelector(".rename-cancelBtn");
+    formCancelBtn.addEventListener("click", function(){
+        revertRenameFormLocation();
+        displayRenamedProject();
+    });
 }
 
-
-
-//display dropdown menu of editProject (mainly animation)
+//display dropdown menu of editContainer (mainly animation)
 const showDropDown = (e) =>{
     const isDropdownButton = e.target.matches("[data-dropdown-button]");        
 
@@ -24,15 +34,13 @@ const showDropDown = (e) =>{
     if(!isDropdownButton && e.target.closest('[data-dropdown]') != null){
         return;
     }
-
     let currentDropDown;
-    
     if(isDropdownButton){                                               //if it is then show form by class .active
         relocateOption(e);
         currentDropDown = e.target.closest("[data-dropdown]");
         setTimeout(function(){
             currentDropDown.classList.toggle("active");
-        },1);                                           
+        },0);                                           
     }
     //if click other dropdown then other disappear
     document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
@@ -44,104 +52,63 @@ const showDropDown = (e) =>{
     });
 }
 
-
-
 //show option to rename or delete project
 const showRenameForm = (e) =>{
-    let editProjectNode = e.target.parentNode.parentNode;
-    let tileNode = editProjectNode.parentNode;
-    let index = tileNode.dataset.project;
-
-    hideDropDown(editProjectNode);          //hide dropdown option
+    let editContainerNode = e.target.parentNode.parentNode;
+    let tileNode = editContainerNode.parentNode;
+    
+    hideDropDown(editContainerNode);          //hide dropdown option
 
     let haveForm = checkFormExist();        //check if there is another form, if there is then close it
     if(haveForm === true){
-        removeRenameForm();
+        revertRenameFormLocation();
         displayRenamedProject();
     }
 
-    createRenameForm(tileNode);
+    relocateRenameForm(tileNode);
     animateRenameForm();
 
     document.getElementById("projectRenameInput").focus();          //put focus on input field when show
     tileNode.classList.add("hidden");        //hide the tile (which is replaced by the form)                       //hide the tile node temporarily 
 }
 //when form open hide the dropdown because animation could show when div is visible again
-const hideDropDown = (editProjectNode) => {
-    editProjectNode.classList.remove('active');
+const hideDropDown = (editContainerNode) => {
+    editContainerNode.classList.remove('active');
 }
 
 //check to see if the form already exist
 const checkFormExist = () =>{
-    if (document.querySelector("#renameForm") != null){
-        return true;
+    const renameForm = document.querySelector("#renameForm");
+    if (renameForm.classList.contains("hidden")){
+        return false;
     }
     else{
-        return false;
+        return true;
     }
 }
 
-//createRenameForm
-const createRenameForm = (tileNode) => {
+//relocate RenameForm to the clicked Tile
+function relocateRenameForm(tileNode){
+    const projectNode = tileNode.parentNode;
+    const renameForm = document.getElementById("renameForm");
 
     const nameNode = tileNode.querySelector(".projectName");
     let name = nameNode.textContent;
 
-    const form = document.createElement("form");
-    form.setAttribute("id", "renameForm");
-    form.setAttribute("autocomplete", "off");
+    const input = renameForm.querySelector("input");
+    input.value = name;
 
-    //adding hidden pureply for animation when removing it
-    form.classList.add("hidden");
-
-    tileNode.parentNode.insertBefore(form, tileNode);
-
-    //menu icon part
-    const projectIcon = document.createElement('div');
-    projectIcon.classList.add("projectIcon");
-    form.appendChild(projectIcon);
-
-    const menuIcon = createSpanIcon("menu");
-    projectIcon.appendChild(menuIcon);
-
-    //input field part
-    const inputField = document.createElement('div');
-    inputField.classList.add("inputField");
-    form.appendChild(inputField);
-
-    const renameInput = document.createElement('input');
-    renameInput.type = "text";
-    renameInput.id = "projectRenameInput";
-    renameInput.value = name;
-    inputField.appendChild(renameInput);
-
-    //buttons part
-    const formButtons = document.createElement('div');
-    formButtons.classList.add('formButtons');
-    inputField.appendChild(formButtons);
-
-    const rename = document.createElement('input');
-    rename.classList.add("rename-renameBtn");
-    rename.type = "submit";
-    rename.value = "Rename";
-    formButtons.appendChild(rename);
-
-    const cancel = document.createElement("input");
-    cancel.classList.add("rename-cancelBtn");
-    cancel.type = "button";
-    cancel.value = "Cancel";
-    formButtons.appendChild(cancel);
-
-    //add event listener to the rename and cancel button
-    rename.addEventListener("click", function(e){
-        processRenameInput(tileNode);
-        e.preventDefault();
-    });
-    cancel.addEventListener("click", function(){
-        removeRenameForm();
-        displayRenamedProject();
-    });
+    projectNode.insertBefore(renameForm, tileNode);
 }
+//revert form back to its original posting under .project
+function revertRenameFormLocation(){
+    const renameForm = document.getElementById("renameForm");
+    const project = document.querySelector(".project");
+
+    renameForm.classList.add("hidden");
+    project.appendChild(renameForm);
+}
+
 //animate rename form when pop up
 const animateRenameForm = () =>{
     const form = document.querySelector("#renameForm");
@@ -149,31 +116,25 @@ const animateRenameForm = () =>{
     //setting time out wait for 1ms after the dom is created then remove hidden
     setTimeout(function(){
         form.classList.remove("hidden");
-    },1);
+    },0);
 }
 
 //process the inputed renamed project
-const processRenameInput = (tileNode) =>{
+const processRenameInput = () =>{
+    const tileNode = document.querySelector(".project .tile.hidden");
     let renameInput = document.getElementById("projectRenameInput").value;
     const projectName = tileNode.querySelector(".projectName");
     projectName.textContent = renameInput;
 
     displayRenamedProject();
     updateTitle(projectName);           //update title on right panel
-    removeRenameForm();
-    
+    revertRenameFormLocation();
 }
 
 //display renamed project
 const displayRenamedProject = () => {
     const hiddenTile = document.querySelector("div.hidden");
     hiddenTile.classList.remove("hidden");
-}
-
-//remove the rename form from flow
-const removeRenameForm = () => {
-    const renameForm = document.querySelector("#renameForm");
-    renameForm.remove();
 }
 
 //remove project from list
@@ -188,7 +149,7 @@ const deleteProject = (e) => {
         updateTitle(nameNode);    
     }
 
-    revertOptionLocation();                                 //when delete a tile, move option div back to under project for stand by
+    revertOptionLocation(e);                                 //when delete a tile, move option div back to under project for stand by
     tile.remove();
     rearrangeProject(index);
 }
@@ -203,48 +164,36 @@ const rearrangeProject = (index) => {
     });
 }
 
-//create option element
-function createOptionDropDown(e){
-    let container = e.target.parentNode;
-    console.log(container);
-    //onclick show rename and delete section
-    const option = document.createElement('div');
-    option.classList.add("option");
-    container.appendChild(option);
-
-    if(container.classList.contains(".editProject")){
-        const renameBtn = document.createElement('button');
-        renameBtn.textContent = "Rename";
-        option.appendChild(renameBtn);
-        renameBtn.addEventListener("click", showRenameForm);
-    }
-    //edit for edit list
-
-    const deleteBtn = document.createElement('button');
-    deleteBtn.textContent = "Delete";
-    option.appendChild(deleteBtn);
-
-    deleteBtn.addEventListener("click", deleteProject);
-}
-//
+//relocate option(project: rename & delete) &(list: edit delete)to be under the selected editContainer div so it can pop up from there
 function relocateOption(e){
-    let editProject = e.target.parentNode;
-    const option = document.querySelector(".project .option");
-    option.classList.remove("hidden");
-    editProject.appendChild(option);
-    
-    setTimeout(function(){
-        console.log("timeout")
-    },0);
+    let optionContainer = e.target.parentNode;
+
+    if(e.target.closest(".tile") != null){              //pop up in project
+        const option = document.querySelector(".project .option");
+        option.classList.remove("hidden");
+        optionContainer.appendChild(option);
+    }
+    else if(e.target.closest("li") != null){            //pop up in list
+        const option = document.querySelector(".list-todo .option");
+        optionContainer.appendChild(option);
+        option.classList.remove("hidden");
+    }
 }
 
-function revertOptionLocation(){
-    const option = document.querySelector(".project .option");
-    const project = document.querySelector(".project");
-
-    option.classList.add("hidden");
-    project.appendChild(option);
-
+//revert to orginal place which is child of .project before deleting
+function revertOptionLocation(e){
+    if(e.target.closest(".tile") != null){
+        const option = document.querySelector(".project .option");
+        option.classList.add("hidden");
+        const project = document.querySelector(".project");
+        project.appendChild(option);
+    }
+    else if(e.target.closest("li") != null){
+        const option = document.querySelector("li .option");
+        option.classList.add("hidden");
+        const listToDo = document.querySelector(".list-todo");
+        listToDo.appendChild(option);
+    }
 }
 
-export {editProjectEventListener, showRenameForm, deleteProject};
+export {editContainerEventListener, showRenameForm, deleteProject, revertOptionLocation};

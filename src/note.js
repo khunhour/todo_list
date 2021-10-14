@@ -1,4 +1,4 @@
-
+import {revertOptionLocation} from "./editProject"
 
 function listEvent(){
     const addList = document.querySelector("#addList");
@@ -18,6 +18,7 @@ function listEvent(){
     const todoList = document.querySelector(".list-todo");
     todoList.addEventListener("click", checkListEvent);
     
+
     // const starOutline = document.querySelector(".star-outline");
     // starOutline.addEventListener("click", fillStar);
     
@@ -26,21 +27,25 @@ function checkListEvent(e){
     let node = e.target;
     let isStarIcon = e.target.matches(".star-outline");
     let isCircleIcon = e.target.matches(".unchecked");
-    let isDeleteIcon = e.target.matches(".delete");
     let isText = e.target.matches("[data-title]");
 
-    console.log(node);
+    let isDeleteBtn = e.target.matches("#listDelete");
+    let isEditBtn = e.target.matches("#listEdit")
+
     if(isStarIcon){
         fillStar(e);
     }
     else if(isCircleIcon){
         styleCompletesTask(e);
     }
-    else if(isDeleteIcon){
-        deleteList(e);
-    }
     else if(isText){
         showDetails(e);
+    }
+    else if(isDeleteBtn){
+        deleteList(e);
+    }
+    else if(isEditBtn){
+        console.log();
     }
     else{
         return;
@@ -116,11 +121,13 @@ function fillStar(e){
 
 function deleteList(e){
     let listNode = e.target.closest("li");
+    revertOptionLocation(e);
     listNode.remove();
 }
 
 function showDetails(e){
     let detail = e.target.nextElementSibling;
+    console.log(detail);
     detail.classList.toggle("hidden");
 }
 

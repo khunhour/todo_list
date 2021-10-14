@@ -62,9 +62,8 @@
                         <div class="number">234</div>
                     </div>
                     
-                    <div class="editProject" data-dropdown>
+                    <div class="editContainer" data-dropdown>
                         <span class="material-icons-round" data-dropdown-button>more_vert</span>
-                        
                     </div>
                 </div>
 
@@ -74,7 +73,7 @@
                         <div class="projectName">The Odin Projects</div>
 
                     </div>
-                    <div class="editProject" data-dropdown>
+                    <div class="editContainer" data-dropdown>
                         <span class="material-icons-round" data-dropdown-button>more_vert</span>
                         
                     </div>
@@ -85,7 +84,7 @@
                         <div class="projectName">Task</div>
 
                     </div>
-                    <div class="editProject" data-dropdown>
+                    <div class="editContainer" data-dropdown>
                         <span class="material-icons-round" data-dropdown-button="">more_vert</span>
                         
                     </div>
@@ -103,11 +102,25 @@
                     </div>
                 </form>
                 <button id="addProject"><span class="material-icons-round">add_circle_outlined</span>Add Project</button>
+                <!-- hidden pop up option -->
                 <div class="option hidden">
                     <button>Rename</button>
                     <button>Delete</button>
                 </div>
-            </div>
+                <!-- hidden pop up form -->
+                <form id="renameForm" class="hidden" autocomplete="off">
+                    <div class="projectIcon">
+                        <span class="material-icons-round">menu</span>
+                    </div>
+                    <div class="inputField">
+                        <input type="text" id="projectRenameInput" maxlength="24">
+                        <div class="formButtons">
+                            <input type="submit" class="rename-renameBtn" value="Rename">
+                            <input type="button" class="rename-cancelBtn" value="Cancel">
+                        </div>
+                    </div>
+                </form>
+            </div>    
         </div>
         <div id="rightPanel" class="rightPanel">
             <div class="title">Today</div>
@@ -125,30 +138,57 @@
                     <li data-list="1">       
                         <div class="unchecked"></div>
                         <div class="list-details">
-                            <textarea data-title maxlength="60" readonly>go cry in the bathroomf sd fsdf dsf  f sdf ds fds f ds f</textarea>
-                            <textarea class="hidden">Helloooo,fdsjfksnflfsdifjdslfkmsdfio</textarea>
+                            <p data-title>go cry in ds f ds f</p>
+                            <p class="hidden"><span>#Notes: </span>Hellomsdfio</p>
                         </div>
                         <div class="list-right">
                             <span class="material-icons-round star-outline">star_outline</span>
                             <span class="material-icons-round important listHidden">star</span>
-                            <span class="material-icons-round delete">clear</span>
-                            <div class="editProject" data-dropdown>
+                            <div class="editContainer" data-dropdown>
                                 <span class="material-icons-round" data-dropdown-button="">more_vert</span>
-                                <div class="option">
-                                    <button>Rename</button>
-                                    <button>Delete</button>
-                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li data-list="2">       
+                        <div class="unchecked"></div>
+                        <div class="list-details">
+                            <p data-title>go cry in ds f ds f</p>
+                            <p class="hidden"><span>#Notes: </span>Hellomsdfio</p>
+                        </div>
+                        <div class="list-right">
+                            <span class="material-icons-round star-outline">star_outline</span>
+                            <span class="material-icons-round important listHidden">star</span>
+                            <div class="editContainer" data-dropdown>
+                                <span class="material-icons-round" data-dropdown-button="">more_vert</span>
                             </div>
                         </div>
                     </li>
                     
                 </ul>
+                <!-- hidden pop up option -->
+                <div class="option hidden">
+                    <button id="listEdit">Edit</button>
+                    <button id="listDelete">Delete</button>
+                </div>
+                <!-- hidden pop up edit task form  -->
+                <form id="editListForm" class="hidden" autocomplete="off">
+                    <div class="inputField">
+                        <label>Title:</label>
+                        <input type="text" id="editListTitle" placeholder="What to do?">
+                        <label>Details:</label>
+                        <input type="text" id="editListDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?"></input>
+                        <div class="formButtons">
+                            <input type="submit" class="edit-listSubmitBtn" value="Add">
+                            <input type="button" class="edit-listCancelBtn" value="Cancel">
+                        </div>
+                    </div>
+                </form>
                 <form id="listForm" class="hidden" autocomplete="off">
                     <div class="inputField">
                         <label>Title:</label>
                         <input type="text" id="listInput" placeholder="What to do?">
                         <label>Details:</label>
-                        <textarea placeholder="eg: I'm just gonna procrastinate, aren't I?"></textarea>
+                        <input type="text" id="listInputDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?"></input>
                         <div class="formButtons">
                             <input type="submit" class="listSubmitBtn" value="Add">
                             <input type="button" class="listCancelBtn" value="Cancel">
