@@ -250,8 +250,10 @@ form:hover{
 
 .project #projectForm, 
 .project #renameForm,
-#listForm{
+#listForm,
+#editListForm{
     display:flex;
+    flex:1;
     align-items:flex-start;
     opacity: 1;
     pointer-events: auto;
@@ -307,7 +309,9 @@ input[type=text],textarea{
 .rename-renameBtn,
 .rename-cancelBtn,
 .listSubmitBtn,
-.listCancelBtn{
+.listCancelBtn,
+.edit-listSubmitBtn,
+.edit-listCancelBtn{
     font-family:'Alata';
     width:70px;
     margin:5px;
@@ -320,12 +324,14 @@ input[type=text],textarea{
 }
 .projectSubmitBtn,
 .rename-renameBtn,
-.listSubmitBtn{
+.listSubmitBtn,
+.edit-listSubmitBtn{
     background-color: var(--accentDark);
 }
 .projectCancelBtn,
 .rename-cancelBtn,
-.listCancelBtn{
+.listCancelBtn,
+.edit-listCancelBtn{
     background-color: rgb(190, 4, 4);
 }
 
@@ -425,6 +431,11 @@ ul .material-icons-round{
     background: white;
     border-radius: 50%;
 }
+
+/* edit form css */
+#editListForm{
+    background-color: transparent;
+}
 .list-details{
     margin:0;
     padding: 0;
@@ -436,11 +447,21 @@ ul p{
     flex:1;
     padding-right:12px;
 }
+/* 
 li textarea{
     cursor: pointer;
-    color:black;
+    color:white;
     font-size: 18px;
-    height:auto;
+    height: auto;
+    margin-bottom: 5px;
+    resize: none;
+    background-color:#273746;
+    border-radius: 5px;
+
+    padding: 8px 10px;
+    padding-bottom: 0px;
+    overflow: none;
+    
 }
 .editing{
     background-color: white;
@@ -449,6 +470,12 @@ li textarea{
 li textarea:focus{
     outline: none;
 }
+.notes textarea{
+    height:auto;
+    font-size: 15px;
+    opacity: 1;
+    transition: opacity 150ms ease-in-out;
+} */
 
 .list-right{
     display:flex;
@@ -465,12 +492,14 @@ li textarea:focus{
     background-color:#253c50;
     
 }
-
-textarea{
-    margin-top:5px;
-    max-height:100px;
-    
-    resize: none;
+.list-details span{
+    display: inline-block;
+}
+.notes{
+    display: flex;
+    align-items: flex-start;
+    box-sizing: border-box;
+    align-content: space-around;
 }
 
 .list-todo form{
