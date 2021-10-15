@@ -19,9 +19,9 @@ const createEventListener = () =>{
 
 }
 let projectList =[
-    {dataProject: 0, name: "Getting Started"},
-    {dataProject: 1, name: "The Odin Project"},
-    {dataProject: 2, name: "Task"}
+    {dataProject: 0, name: "Getting Started",taskList:[], taskNum:0},
+    {dataProject: 1, name: "The Odin Project",taskList:[], taskNum:0},
+    {dataProject: 2, name: "Task",taskList:[], taskNum:0}
 ];
 
 //process the input and prepare to create element project
@@ -31,8 +31,6 @@ const processProjectInput = (e) => {
 
     const newProject = CreateProject(dataProject, projectName);
 
-    newProject.taskList.push({name:"lo"});
-    newProject.taskList.push({name:89});
     projectList.push(newProject);
 
     console.log(projectList);
