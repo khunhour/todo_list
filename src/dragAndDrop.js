@@ -1,4 +1,5 @@
-
+import { projectList } from "./createproject";
+import {sortArray} from "./editProject"
 
 function dragAndDropEvent (){
     const project = document.querySelector(".project");
@@ -30,7 +31,10 @@ function dragStartEndEvent(tile){
 
     tile.addEventListener("dragend", () =>{
         tile.classList.remove("dragging");
-        tile.draggable = false;                                     
+        tile.draggable = false;
+        sortArray();
+        console.log(projectList);
+                                     
     });
 }
 
@@ -44,10 +48,12 @@ function dragOver(e){
 
     if(afterElement == null){                               //meaning if dragging it to the bottom cursor is above nth
         project.insertBefore(dragging, form);               //append it after the hidden form in html
+        
     }
     else{
         project.insertBefore(dragging, afterElement);       //append it after the tile that it is above
     }
+    
 }
 
 //find the closest ptojectTile to the cursor

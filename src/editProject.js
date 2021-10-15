@@ -1,4 +1,4 @@
-import {createSpanIcon} from "./createproject"
+import {createSpanIcon, projectList} from "./createproject"
 import {updateTitle} from "./note"
 
 //fire event listener for editing projects
@@ -15,7 +15,7 @@ function editContainerEventListener(){
     //event listener of renameForm's rename and cancel buttons
     const formRenameBtn = document.querySelector(".rename-renameBtn");
     formRenameBtn.addEventListener("click", function(e){
-        processRenameInput();
+        processRenameInput(e);
         e.preventDefault();
     });
 
@@ -121,11 +121,16 @@ const animateRenameForm = () =>{
 }
 
 //process the inputed renamed project
-const processRenameInput = () =>{
+const processRenameInput = (e) =>{
     const tileNode = document.querySelector(".project .tile.hidden");
     let renameInput = document.getElementById("projectRenameInput").value;
     const projectName = tileNode.querySelector(".projectName");
     projectName.textContent = renameInput;
+
+
+    let dataNum = tileNode.dataset.project;
+    projectList[dataNum].name = renameInput;
+    
 
     displayRenamedProject();
     updateTitle(projectName);           //update title on right panel
@@ -140,8 +145,9 @@ const displayRenamedProject = () => {
 
 //remove project from list
 const deleteProject = (e) => {
-    let index = e.target.parentNode.parentNode.parentNode.dataset.project;
-    const tile = document.querySelector(`[data-project="${index}"]`);
+    let tile = e.target.closest(".tile");
+    let index = tile.dataset.project;
+    // const tile = document.querySelector(`[data-project="${index}"]`);
 
     if(tile.classList.contains("selected")){                //if the tile you want to delete is selected always select the today tile after and update 
         const today = document.querySelector("#today");
@@ -152,7 +158,25 @@ const deleteProject = (e) => {
 
     revertOptionLocation(e);                                 //when delete a tile, move option div back to under project for stand by
     tile.remove();
-    rearrangeProject(index);
+    sortArray();
+    projectList.splice(index,1);
+    console.log(projectList);
+}
+
+function sortArray(){
+    let i=0;
+    //reorder the dataset in node and change dataProject accordingly
+    const tiles = document.querySelectorAll(".project .tile");
+    tiles.forEach((tile) =>{
+
+        let dataNum=tile.dataset.project;
+        tile.dataset.project = i;
+        projectList[dataNum].dataProject = i;
+        i++;
+    });
+    //reorder projects according to their dataProject nunmber
+    projectList.sort((a,b) => a.dataProject - b.dataProject);
+
 }
 
 //rearrange data set after one has been deleted
@@ -197,4 +221,4 @@ function revertOptionLocation(e){
     }
 }
 
-export {editContainerEventListener, showRenameForm,hideDropDown, deleteProject, revertOptionLocation};
+export {editContainerEventListener, showRenameForm,hideDropDown, deleteProject, revertOptionLocation,sortArray};

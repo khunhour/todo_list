@@ -15,6 +15,8 @@ const createEventListener = () =>{
     
     const leftPanel = document.querySelector(".leftPanel");
     leftPanel.addEventListener("click", checkTile);
+
+
 }
 let projectList =[
     {dataProject: 0, name: "Getting Started"},
@@ -24,21 +26,30 @@ let projectList =[
 
 //process the input and prepare to create element project
 const processProjectInput = (e) => {
-    let projectInput = document.getElementById("projectInput").value;
+    let projectName = document.getElementById("projectInput").value;
     let dataProject = findNextDataset();
 
-    const newProject = CreateProject(dataProject, projectInput);
+    const newProject = CreateProject(dataProject, projectName);
+
+    newProject.taskList.push({name:"lo"});
+    newProject.taskList.push({name:89});
     projectList.push(newProject);
 
-    addProject(projectInput);
+    console.log(projectList);
+    addProject(projectName);
     hideProjectForm();
     e.preventDefault();
 }
 
+//create project factory function
 const CreateProject = (dataProject, name) =>{
+    const taskList=[];
+    const taskNum = taskList.length;
     return{
         dataProject,
-        name
+        name,
+        taskList,
+        taskNum
     }
 }
 
@@ -145,4 +156,4 @@ const selectTile = (node) =>{
     node.classList.add("selected");                             //add class selected to current tile
 }
 
-export {createEventListener, createSpanIcon};
+export {createEventListener, createSpanIcon, projectList};
