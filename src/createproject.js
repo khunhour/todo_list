@@ -19,9 +19,52 @@ const createEventListener = () =>{
 
 }
 let projectList =[
-    {dataProject: 0, name: "Getting Started",taskList:[], taskNum:0},
-    {dataProject: 1, name: "The Odin Project",taskList:[], taskNum:0},
-    {dataProject: 2, name: "Task",taskList:[], taskNum:0}
+    {dataProject: 0, name: "Getting Started",taskNum:0, taskList:[
+        {
+            dataProject:0,
+            id:0,
+            title:"try this",
+            details:"",
+            completed: false,
+            important: false
+        }, 
+        {
+            dataProject:0,
+            id:0,
+            title:"fsdf",
+            details:"sdfsdf",
+            completed: false,
+            important: false
+        }
+    ]},
+    {dataProject: 1, name: "The Odin Project", taskNum:0,taskList:[
+        {
+            dataProject:1,
+            id:2,
+            title:"try this",
+            details:"",
+            completed: false,
+            important: false
+        }, 
+        {
+            dataProject:1,
+            id:3,
+            title:"fsdf",
+            details:"sdfsdf",
+            completed: false,
+            important: false
+        }
+    ]},
+    {dataProject: 2, name: "Task",taskNum:0, taskList:[
+        {
+            dataProject:2,
+            id:3,
+            title:"try this",
+            details:"",
+            completed: false,
+            important: false
+        }, 
+    ]}
 ];
 
 //process the input and prepare to create element project

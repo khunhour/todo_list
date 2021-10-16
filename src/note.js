@@ -18,12 +18,14 @@ function listEvent(){
     todoList.addEventListener("click", checkListEvent);
 }
 
-const CreateTask = (dataList, title, details, status) =>{
+const CreateTask = (dataProject,id, title, details, completed, important) =>{
     return{
-        dataList,
+        dataProject,
+        id,
         title,
         details,
-        completed:status
+        completed: completed,
+        important: important
     }
 }
 
@@ -37,7 +39,7 @@ function checkListEvent(e){
     let isEditBtn = e.target.matches("#listEdit")
 
     if(isStarIcon){
-        fillStar(e);
+        toggleImportant(e);
     }
     else if(isCircleIcon){
         styleCompletesTask(e);
@@ -77,29 +79,30 @@ const hideListForm = (e) => {
     revertEditFormLocation("#listForm");
 }
 
+let id = 4;
 //processing data from add task
 function processListInput(e){
-    let selectedProject = document.querySelector(".tile.selected");
-    let dataProject = selectedProject.dataset.project;
+    let dataProject = findCurrentDataProject();
 
     let title = document.getElementById("listInput").value;
     let details = document.getElementById("listInputDetail").value;
-    let dataList = findListLength(dataProject);
+    let listId = id;
 
-    const newTask = CreateTask(dataList, title, details, false);
+    const newTask = CreateTask(dataProject, listId, title, details, false, false);
 
     projectList[dataProject].taskList.push(newTask);
     console.log(projectList);
-    addTask(dataList, title, details);
+    addTask(listId, title, details);
     hideListForm();
+    id++;
     e.preventDefault();
 }
 
 //create the task DOM
-function addTask(dataList, title, details){
+function addTask(listId, title, details){
     const ul = document.querySelector("ul");
     const li = document.createElement('li');
-    li.dataset.list = dataList;
+    li.id = listId;
     ul.appendChild(li);
 
     const unchecked = document.createElement('div');
@@ -188,6 +191,11 @@ function insertLastInput(e){
 
 }
 
+function findCurrentDataProject(){
+    const selected = document.querySelector(".selected");
+    return selected.dataset.project;
+}
+
 function relocateEditListForm(e){
     let listNode = e.target.closest("li");
     let ul = listNode.parentNode;
@@ -215,15 +223,39 @@ function styleCompletesTask(e){
     taskTile.classList.toggle("fade");
 }
 
-function fillStar(e){
+function findSelectedTask(listId){
+    console.log("id"+listId);
+    // let currentProject = projectList.find((project) => project.taskList.some(task => listId == task.id));
+
+    let selectedTask = projectList.reduce((acc, project) =>{
+        let currentTask = project.taskList.find(task => (task.id == listId));
+        if(currentTask != null){
+            acc = currentTask;
+        }
+        return acc;
+    },{});
+
+    return selectedTask;
+}
+
+function toggleImportant(e){
+    //styling Node
     let starOutline = e.target;
     starOutline.classList.toggle("listHidden");
     
     let starFilled = e.target.nextElementSibling;
     starFilled.classList.toggle("listHidden");
 
-    //some if statement here
+    //updating projectList status
+    let listId = e.target.closest("li").id;
+    let selectedTask = findSelectedTask(listId);
+    let importantStatus = selectedTask.important;
+    selectedTask.important = !importantStatus;
+
+    console.log(importantStatus);
     
+    console.log("toggleImportant");
+    console.log(projectList);
 }
 
 function deleteList(e){
