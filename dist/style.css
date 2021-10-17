@@ -497,9 +497,10 @@ li textarea:focus{
 .date{
     font-size: 14px;
     padding:3px 6px;
-    margin: auto 5px;
+    margin: 5px 5px;
     border:solid 1px white;
     border-radius: 10px;
+    /* margin-bottom: auto; */
 }
 .list-details span{
     display: inline-block;

@@ -125,12 +125,12 @@ function displayTask(dataProject){
     const ul = document.querySelector("ul");
     ul.textContent="";
     projectList[dataProject].taskList.forEach((task) =>{
-        addTask(task.id, task.title, task.details, task.date);
+        addTask(task.id, task.title, task.details, task.date, task.completed, task.important);
     })
 }
 
 //create the task DOM
-function addTask(listId, title, details, date){
+function addTask(listId, title, details, date, completed, important){
     const ul = document.querySelector("ul");
     const li = document.createElement('li');
     li.id = listId;
@@ -139,6 +139,9 @@ function addTask(listId, title, details, date){
     const unchecked = document.createElement('div');
     unchecked.classList.add("unchecked");
     li.appendChild(unchecked);
+    if(completed){
+        unchecked.classList.add("checked");
+    }
 
     const listDetails = document.createElement("div");
     listDetails.classList.add("list-details");
@@ -149,28 +152,34 @@ function addTask(listId, title, details, date){
     taskTitle.textContent = title;
     listDetails.appendChild(taskTitle);
 
-
     const taskDetails = document.createElement('p');
     taskDetails.classList.add("taskDetails","hidden");
     taskDetails.textContent = details;
     listDetails.appendChild(taskDetails);
 
+    const dateDiv = document.createElement('div');
+    dateDiv.classList.add("date");
+    dateDiv.textContent = date;
+    li.appendChild(dateDiv);
+
     const listRight = document.createElement('div');
     listRight.classList.add("list-right");
     li.appendChild(listRight);
-
-    const dateDiv = document.createElement('div');
-    dateDiv.classList.add("date");
-    dateDiv.textContent = date
-    listRight.appendChild(dateDiv);
 
     const starOutline = createSpanIcon("star_outline");
     starOutline.classList.add("star-outline");
     listRight.appendChild(starOutline);
 
     const star = createSpanIcon("star");
-    star.classList.add("important", "listHidden");
+    star.classList.add("important");
     listRight.appendChild(star);
+
+    if(important){
+        starOutline.classList.add("listHidden");
+    }
+    else{
+        star.classList.add("listHidden");
+    }
 
     const editContainer = document.createElement('div');
     editContainer.dataset.dropdown = "";
@@ -288,10 +297,7 @@ function toggleImportant(e){
     let importantStatus = selectedTask.important;
     selectedTask.important = !importantStatus;
 
-    console.log(importantStatus);
-    
-    console.log("toggleImportant");
-    console.log(projectList);
+    saveToLocalStorage();
 }
 
 function deleteList(e){
