@@ -36,7 +36,7 @@
             
             <div class="home">
                 <h2>Home</h2>
-                <div class="tile" id="today">
+                <div class="tile selected" id="today">
                     <img src="images/today1.png" alt="today">
                     <div data-name>Today</div>
                     <div class="number">0</div>
@@ -54,7 +54,7 @@
             </div>
             <div class="project">
                 <h2>Projects</h2>
-                <div class="tile selected" data-project="0"> 
+                <!-- <div class="tile selected" data-project="0"> 
                     <span class="material-icons-round" data-drag>menu</span>
                     
                     <div class="projectInfo">
@@ -65,30 +65,7 @@
                     <div class="editContainer" data-dropdown>
                         <span class="material-icons-round" data-dropdown-button>more_vert</span>
                     </div>
-                </div>
-
-                <div class="tile" data-project="1">
-                    <span class="material-icons-round" data-drag>menu</span>
-                    <div class="projectInfo">
-                        <div class="projectName">The Odin Projects</div>
-
-                    </div>
-                    <div class="editContainer" data-dropdown>
-                        <span class="material-icons-round" data-dropdown-button>more_vert</span>
-                        
-                    </div>
-                </div>
-                <div class="tile" data-project="2">
-                    <span class="material-icons-round" data-drag>menu</span>
-                    <div class="projectInfo">
-                        <div class="projectName">Task</div>
-
-                    </div>
-                    <div class="editContainer" data-dropdown>
-                        <span class="material-icons-round" data-dropdown-button="">more_vert</span>
-                        
-                    </div>
-                </div>
+                </div> -->
                 <form id="projectForm" class="hidden" autocomplete="off">
                     <div class="projectIcon">
                         <span class="material-icons-round">menu</span>
@@ -156,6 +133,7 @@
                             <p class="taskDetails hidden">Hellomsdfio</p>
                         </div>
                         <div class="list-right">
+                            <div class="date">12/03/2021</div>
                             <span class="material-icons-round star-outline">star_outline</span>
                             <span class="material-icons-round important listHidden">star</span>
                             <div class="editContainer" data-dropdown>
@@ -176,7 +154,7 @@
                         <label>Title:</label>
                         <input type="text" id="editListTitle" placeholder="What to do?">
                         <label>Details:</label>
-                        <input type="text" id="editListDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?"></input>
+                        <input type="text" id="editListDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?">
                         <div class="formButtons">
                             <input type="submit" class="edit-listSubmitBtn" value="Add">
                             <input type="button" class="edit-listCancelBtn" value="Cancel">
@@ -189,7 +167,9 @@
                         <label>Title:</label>
                         <input type="text" id="listInput" placeholder="What to do?">
                         <label>Details:</label>
-                        <input type="text" id="listInputDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?"></input>
+                        <input type="text" id="listInputDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?">
+                        <label>Date:</label>
+                        <input type="date" id="listInputDate" >
                         <div class="formButtons">
                             <input type="submit" class="listSubmitBtn" value="Add">
                             <input type="button" class="listCancelBtn" value="Cancel">

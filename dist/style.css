@@ -289,7 +289,9 @@ form:hover{
     flex: 1;
     box-sizing: content-box;
 }
-input[type=text],textarea{
+input[type=text],
+textarea,
+input[type=date]{
     width:100%;
     box-sizing: border-box;
     font-family: 'Alata';
@@ -491,6 +493,13 @@ li textarea:focus{
 .list-right .material-icons-round:hover{
     background-color:#253c50;
     
+}
+.date{
+    font-size: 14px;
+    padding:3px 6px;
+    margin: auto 5px;
+    border:solid 1px white;
+    border-radius: 10px;
 }
 .list-details span{
     display: inline-block;

@@ -17,8 +17,14 @@ const createEventListener = () =>{
     leftPanel.addEventListener("click", checkTile);
 
 
+    console.log("hi");
+    console.log(projectList);
+    displayProject(projectList);
+
 }
-let projectList =[
+
+  
+let defaultProjectList =[
     {dataProject: 0, name: "Getting Started",taskNum:0, taskList:[
         {
             dataProject:0,
@@ -67,6 +73,10 @@ let projectList =[
     ]}
 ];
 
+let projectList = localStorage.getItem("myProjectList");
+    projectList = JSON.parse(projectList || JSON.stringify(defaultProjectList));
+
+  
 //process the input and prepare to create element project
 const processProjectInput = (e) => {
     let projectName = document.getElementById("projectInput").value;
@@ -75,9 +85,10 @@ const processProjectInput = (e) => {
     const newProject = CreateProject(dataProject, projectName);
 
     projectList.push(newProject);
+    localStorage.setItem("myProjectList", JSON.stringify(projectList));
 
     console.log(projectList);
-    addProject(projectName);
+    addProject(dataProject, projectName);
     hideProjectForm();
     e.preventDefault();
 }
@@ -111,15 +122,19 @@ const hideProjectForm = () => {
     projectForm.classList.add("hidden");
 }
 
-//create a project and add it to the list of projects in html
-const addProject = (textInput) => {
-    let datasetNum = findNextDataset();
+const displayProject = (array) =>{
+    array.forEach(project =>{
+        addProject(project.dataProject, project.name);
+    });
+}
 
+//create a project and add it to the list of projects in html
+const addProject = (dataProject, textInput) => {
     const project = document.querySelector('.project');
     const form = document.querySelector('#projectForm');
 
     const container = document.createElement('div');
-    container.setAttribute("data-project", `${datasetNum}`);
+    container.setAttribute("data-project", `${dataProject}`);
     container.classList.add("tile");
     project.insertBefore(container, form);
 
@@ -130,7 +145,6 @@ const addProject = (textInput) => {
     //name and number status
     const projectInfo = document.createElement("div");
     projectInfo.classList.add("projectInfo");
-    projectInfo.tabIndex = "0";
     container.appendChild(projectInfo);
 
     const projectName = document.createElement('div');

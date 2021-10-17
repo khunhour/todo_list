@@ -1,5 +1,6 @@
 import {editContainerEventListener, revertOptionLocation, hideDropDown} from "./editProject"
 import {projectList, createSpanIcon} from "./createproject"
+import {format, compareAsc} from 'date-fns'
 
 function listEvent(){
     const addList = document.querySelector("#addList");
@@ -18,14 +19,15 @@ function listEvent(){
     todoList.addEventListener("click", checkListEvent);
 }
 
-const CreateTask = (dataProject,id, title, details, completed, important) =>{
+const CreateTask = (dataProject,id, title, details, completed, important, date) =>{
     return{
         dataProject,
         id,
         title,
         details,
         completed: completed,
-        important: important
+        important: important,
+        date:date
     }
 }
 
@@ -86,20 +88,31 @@ function processListInput(e){
 
     let title = document.getElementById("listInput").value;
     let details = document.getElementById("listInputDetail").value;
+    
+    let date = document.getElementById("listInputDate").value;
+    let formattedDate;
+    if(!date){
+        formattedDate = "No Due Date";
+    }
+    else{
+        formattedDate = format(new Date(date), 'MM/dd/yyyy');
+    }
+
+    console.log(date);
     let listId = id;
 
-    const newTask = CreateTask(dataProject, listId, title, details, false, false);
-
+    const newTask = CreateTask(dataProject, listId, title, details, false, false, formattedDate);
     projectList[dataProject].taskList.push(newTask);
+    
     console.log(projectList);
-    addTask(listId, title, details);
+    addTask(listId, title, details, formattedDate);
     hideListForm();
     id++;
     e.preventDefault();
 }
 
 //create the task DOM
-function addTask(listId, title, details){
+function addTask(listId, title, details, date){
     const ul = document.querySelector("ul");
     const li = document.createElement('li');
     li.id = listId;
@@ -127,6 +140,11 @@ function addTask(listId, title, details){
     const listRight = document.createElement('div');
     listRight.classList.add("list-right");
     li.appendChild(listRight);
+
+    const dateDiv = document.createElement('div');
+    dateDiv.classList.add("date");
+    dateDiv.textContent = date
+    listRight.appendChild(dateDiv);
 
     const starOutline = createSpanIcon("star_outline");
     starOutline.classList.add("star-outline");
