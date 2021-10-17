@@ -1,5 +1,5 @@
 import {editContainerEventListener, revertOptionLocation, hideDropDown} from "./editProject"
-import {projectList, createSpanIcon} from "./createproject"
+import {projectList, createSpanIcon, saveToLocalStorage} from "./createproject"
 import {format, compareAsc} from 'date-fns'
 
 function listEvent(){
@@ -72,24 +72,44 @@ const hideListForm = (e) => {
     const listForm = document.querySelector("#listForm");
     const listInput = document.querySelector('#listInput');
     const listInputDetail = document.querySelector("#listInputDetail");
-
+    const dateInput = document.querySelector("#listInputDate");
     // let formNode = e.target.closest("form");
     // const listInput = formNode.querySelector("")
 
     listInput.value = "";
     listInputDetail.value ="";
-    revertEditFormLocation("#listForm");
+    dateInput.value ="";
+
+    listForm.classList.add("hidden");
+    // revertEditFormLocation("#listForm");
 }
 
-let id = 4;
+let defaultId = 20;
+let id = Number(localStorage.getItem("currentId")) || defaultId;
+
 //processing data from add task
 function processListInput(e){
-    let dataProject = findCurrentDataProject();
-
     let title = document.getElementById("listInput").value;
     let details = document.getElementById("listInputDetail").value;
-    
-    let date = document.getElementById("listInputDate").value;
+    let dateInput = document.getElementById("listInputDate").value;
+
+    let dataProject = findCurrentDataProject();
+    let date = processDateData(dateInput);
+    let listId = id;
+
+    const newTask = CreateTask(dataProject, listId, title, details, false, false, date);
+    projectList[dataProject].taskList.push(newTask);
+    saveToLocalStorage();
+
+    console.log(projectList);
+    addTask(listId, title, details, date);
+    hideListForm();
+    id++;
+    e.preventDefault();
+}
+
+//process date input function
+function processDateData(date){
     let formattedDate;
     if(!date){
         formattedDate = "No Due Date";
@@ -97,18 +117,16 @@ function processListInput(e){
     else{
         formattedDate = format(new Date(date), 'MM/dd/yyyy');
     }
+    return formattedDate;
+}
 
-    console.log(date);
-    let listId = id;
-
-    const newTask = CreateTask(dataProject, listId, title, details, false, false, formattedDate);
-    projectList[dataProject].taskList.push(newTask);
-    
-    console.log(projectList);
-    addTask(listId, title, details, formattedDate);
-    hideListForm();
-    id++;
-    e.preventDefault();
+//display all the task in a project
+function displayTask(dataProject){
+    const ul = document.querySelector("ul");
+    ul.textContent="";
+    projectList[dataProject].taskList.forEach((task) =>{
+        addTask(task.id, task.title, task.details, task.date);
+    })
 }
 
 //create the task DOM
@@ -278,6 +296,13 @@ function toggleImportant(e){
 
 function deleteList(e){
     let listNode = e.target.closest("li");
+    let id = listNode.id;
+    let selectedTask = findSelectedTask(id);
+    let dataProject = selectedTask.dataProject;
+    projectList[dataProject].taskList =  projectList[dataProject].taskList.filter(task => task != selectedTask);
+    saveToLocalStorage();
+    console.log(projectList[dataProject].taskList);
+
     revertOptionLocation(e);
     listNode.remove();
 }
@@ -290,4 +315,4 @@ function showDetails(e){
     },0);
 }
 
-export {updateTitle, showNote, listEvent};
+export {updateTitle, showNote, listEvent, displayTask, id};

@@ -1,4 +1,4 @@
-import { showNote, updateTitle} from "./note";
+import { displayTask, showNote, updateTitle, id} from "./note";
 import { showRenameForm , deleteProject} from "./editProject";
 import { dragStartEndEvent } from "./dragAndDrop";
 
@@ -85,12 +85,18 @@ const processProjectInput = (e) => {
     const newProject = CreateProject(dataProject, projectName);
 
     projectList.push(newProject);
-    localStorage.setItem("myProjectList", JSON.stringify(projectList));
+    saveToLocalStorage();
 
     console.log(projectList);
     addProject(dataProject, projectName);
     hideProjectForm();
     e.preventDefault();
+}
+
+
+function saveToLocalStorage(){
+    localStorage.setItem("myProjectList", JSON.stringify(projectList));
+    localStorage.setItem("currentId", id.toString());
 }
 
 //create project factory function
@@ -190,11 +196,13 @@ function checkTile(e){
         const title = homeTile.querySelector("[data-name]");
         
         selectTile(homeTile);
+        
         updateTitle(title);
     }
     else if(projectTile != null){
         const title = projectTile.querySelector(".projectName");
-
+        let dataProject = projectTile.dataset.project;
+        displayTask(dataProject);
         selectTile(projectTile);
         updateTitle(title);
     }
@@ -211,4 +219,4 @@ const selectTile = (node) =>{
     node.classList.add("selected");                             //add class selected to current tile
 }
 
-export {createEventListener, createSpanIcon, projectList};
+export {createEventListener, createSpanIcon, projectList, saveToLocalStorage};

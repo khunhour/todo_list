@@ -1,4 +1,4 @@
-import {createSpanIcon, projectList} from "./createproject"
+import {createSpanIcon, projectList, saveToLocalStorage} from "./createproject"
 import {updateTitle} from "./note"
 
 //fire event listener for editing projects
@@ -130,7 +130,7 @@ const processRenameInput = (e) =>{
 
     let dataNum = tileNode.dataset.project;
     projectList[dataNum].name = renameInput;
-    
+    saveToLocalStorage();
 
     displayRenamedProject();
     updateTitle(projectName);           //update title on right panel
@@ -160,6 +160,7 @@ const deleteProject = (e) => {
     tile.remove();
     sortArray();
     projectList.splice(index,1);
+    saveToLocalStorage();
     console.log(projectList);
 }
 
@@ -176,7 +177,7 @@ function sortArray(){
     });
     //reorder projects according to their dataProject nunmber
     projectList.sort((a,b) => a.dataProject - b.dataProject);
-
+    saveToLocalStorage();
 }
 
 //rearrange data set after one has been deleted
