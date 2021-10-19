@@ -192,34 +192,49 @@ const rearrangeProject = (index) => {
 
 //relocate option(project: rename & delete) &(list: edit delete)to be under the selected editContainer div so it can pop up from there
 function relocateOption(e){
-    let optionContainer = e.target.parentNode;
-
+    const editContainer = e.target.closest(".editContainer");
     if(e.target.closest(".tile") != null){              //pop up in project
-        const option = document.querySelector(".project .option");
-        option.classList.remove("hidden");
-        optionContainer.appendChild(option);
+        const projectOption = document.getElementById("projectOption");
+        projectOption.classList.remove("hidden");
+        editContainer.appendChild(projectOption);
+        console.log("project");
+        console.log(projectOption);
     }
     else if(e.target.closest("li") != null){            //pop up in list
-        const option = document.querySelector(".list-todo .option");
-        optionContainer.appendChild(option);
-        option.classList.remove("hidden");
+        const listOption = document.getElementById("listOption");
+        listOption.classList.remove("hidden");
+        editContainer.appendChild(listOption);
+        console.log("list");
+        
     }
 }
 
 //revert to orginal place which is child of .project before deleting
-function revertOptionLocation(e){
-    if(e.target.closest(".tile") != null){
-        const option = document.querySelector(".project .option");
-        option.classList.add("hidden");
-        const project = document.querySelector(".project");
-        project.appendChild(option);
-    }
-    else if(e.target.closest("li") != null){
-        const option = document.querySelector("li .option");
-        option.classList.add("hidden");
-        const listToDo = document.querySelector(".list-todo");
-        listToDo.appendChild(option);
-    }
+function revertOptionLocation(){
+    // if(e.target.closest(".tile") != null){
+    //     const option = document.querySelector(".project .option");
+    //     option.classList.add("hidden");
+    //     const project = document.querySelector(".project");
+    //     project.appendChild(option);
+    // }
+    // else if(e.target.closest("li") != null){
+    //     const option = document.querySelector("li .option");
+    //     option.classList.add("hidden");
+    //     const listToDo = document.querySelector(".list-todo");
+    //     listToDo.appendChild(option);
+    // }
+    const projectOption = document.querySelector("#projectOption");
+    projectOption.classList.add("hidden");
+    const project = document.querySelector(".project");
+    project.appendChild(projectOption);
+
+    const listOption = document.querySelector("#listOption");
+    listOption.classList.add("hidden");
+    const listToDo = document.querySelector(".list-todo");
+    listToDo.appendChild(listOption);
+
+
+
 }
 
 export {editContainerEventListener, showRenameForm,hideDropDown, deleteProject, revertOptionLocation,sortArray};

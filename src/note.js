@@ -41,10 +41,12 @@ function checkListEvent(e){
     let isEditBtn = e.target.matches("#listEdit")
 
     if(isStarIcon){
-        toggleImportant(e);
+        styleImportantTask(e);
+        updateImportantTask(e);
     }
     else if(isCircleIcon){
         styleCompletesTask(e);
+        updateCompletedTask(e);
     }
     else if(isText){
         showDetails(e);
@@ -139,21 +141,24 @@ function addTask(listId, title, details, date, completed, important){
     const unchecked = document.createElement('div');
     unchecked.classList.add("unchecked");
     li.appendChild(unchecked);
-    if(completed){
-        unchecked.classList.add("checked");
-    }
 
     const listDetails = document.createElement("div");
     listDetails.classList.add("list-details");
     li.appendChild(listDetails);
 
-    const taskTitle = document.createElement('p');
+    if(completed){
+        unchecked.classList.toggle("checked");
+        listDetails.classList.toggle("lineThrough");
+        li.classList.toggle("fade");
+    }
+
+    const taskTitle = document.createElement('div');
     taskTitle.classList.add("taskTitle");
     taskTitle.textContent = title;
     listDetails.appendChild(taskTitle);
 
-    const taskDetails = document.createElement('p');
-    taskDetails.classList.add("taskDetails","hidden");
+    const taskDetails = document.createElement('div');
+    taskDetails.classList.add("taskDetails");
     taskDetails.textContent = details;
     listDetails.appendChild(taskDetails);
 
@@ -268,6 +273,14 @@ function styleCompletesTask(e){
     taskTile.classList.toggle("fade");
 }
 
+function updateCompletedTask(e){
+    let listId = e.target.closest("li").id;
+    let selectedTask = findSelectedTask(listId);
+    selectedTask.completed = !selectedTask.completed;
+    console.log(projectList[4].taskList);
+    saveToLocalStorage();
+}
+
 function findSelectedTask(listId){
     console.log("id"+listId);
     // let currentProject = projectList.find((project) => project.taskList.some(task => listId == task.id));
@@ -283,22 +296,22 @@ function findSelectedTask(listId){
     return selectedTask;
 }
 
-function toggleImportant(e){
+function styleImportantTask(e){
     //styling Node
     let starOutline = e.target;
     starOutline.classList.toggle("listHidden");
     
     let starFilled = e.target.nextElementSibling;
     starFilled.classList.toggle("listHidden");
+}
 
-    //updating projectList status
+function updateImportantTask(e){
     let listId = e.target.closest("li").id;
     let selectedTask = findSelectedTask(listId);
-    let importantStatus = selectedTask.important;
-    selectedTask.important = !importantStatus;
-
+    selectedTask.important = !selectedTask.important;
     saveToLocalStorage();
 }
+
 
 function deleteList(e){
     let listNode = e.target.closest("li");
