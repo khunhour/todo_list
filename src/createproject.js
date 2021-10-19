@@ -1,4 +1,4 @@
-import { displayTask, showNote, updateTitle, id} from "./note";
+import { displayTask, updateTitle, id} from "./note";
 import { showRenameForm , deleteProject, revertOptionLocation} from "./editProject";
 import { dragStartEndEvent } from "./dragAndDrop";
 
@@ -16,11 +16,7 @@ const createEventListener = () =>{
     const leftPanel = document.querySelector(".leftPanel");
     leftPanel.addEventListener("click", checkTile);
 
-
-    console.log("hi");
-    console.log(projectList);
     displayProject(projectList);
-
 }
 
   let defaultProjectList=[];
@@ -93,7 +89,7 @@ const processProjectInput = (e) => {
     e.preventDefault();
 }
 
-
+//save projectList and last id data on local storage
 function saveToLocalStorage(){
     localStorage.setItem("myProjectList", JSON.stringify(projectList));
     localStorage.setItem("currentId", id.toString());

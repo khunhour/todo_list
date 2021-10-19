@@ -197,44 +197,26 @@ function relocateOption(e){
         const projectOption = document.getElementById("projectOption");
         projectOption.classList.remove("hidden");
         editContainer.appendChild(projectOption);
-        console.log("project");
-        console.log(projectOption);
     }
     else if(e.target.closest("li") != null){            //pop up in list
         const listOption = document.getElementById("listOption");
         listOption.classList.remove("hidden");
-        editContainer.appendChild(listOption);
-        console.log("list");
-        
+        editContainer.appendChild(listOption);        
     }
 }
 
 //revert to orginal place which is child of .project before deleting
 function revertOptionLocation(){
-    // if(e.target.closest(".tile") != null){
-    //     const option = document.querySelector(".project .option");
-    //     option.classList.add("hidden");
-    //     const project = document.querySelector(".project");
-    //     project.appendChild(option);
-    // }
-    // else if(e.target.closest("li") != null){
-    //     const option = document.querySelector("li .option");
-    //     option.classList.add("hidden");
-    //     const listToDo = document.querySelector(".list-todo");
-    //     listToDo.appendChild(option);
-    // }
+    //revert option DOM in left panel
     const projectOption = document.querySelector("#projectOption");
     projectOption.classList.add("hidden");
     const project = document.querySelector(".project");
     project.appendChild(projectOption);
-
+    //revert option DOM in right panel
     const listOption = document.querySelector("#listOption");
     listOption.classList.add("hidden");
     const listToDo = document.querySelector(".list-todo");
     listToDo.appendChild(listOption);
-
-
-
 }
 
 export {editContainerEventListener, showRenameForm,hideDropDown, deleteProject, revertOptionLocation,sortArray};

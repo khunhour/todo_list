@@ -12,9 +12,10 @@ function listEvent(){
     const listSubmit = document.getElementById("listForm");
     listSubmit.addEventListener("submit", processListInput);
 
-    const editCancelBtn = document.querySelector(".edit-listCancelBtn");
-    editCancelBtn.addEventListener("click", hideEditform);
-
+    const editCancelBtn = document.querySelector(".editTaskCancelBtn");
+    editCancelBtn.addEventListener("click", (e)=>{
+        revertEditFormLocation(e);
+    });
     const todoList = document.querySelector(".list-todo");
     todoList.addEventListener("click", checkListEvent);
 }
@@ -52,7 +53,7 @@ function checkListEvent(e){
         showDetails(e);
     }
     else if(isDeleteBtn){
-        deleteList(e);
+        deleteTask(e);
     }
     else if(isEditBtn){
         showEditForm(e);
@@ -210,28 +211,19 @@ function updateTitle(nameNode){
     title.textContent = nameNode.textContent;
 }
 
-//display note
-function showNote(e){
-
-    console.log(e.currentTarget.parentNode.dataset.project);
-}
-
-//create list
-function createList(){
-    console.log("hi");
-}
 
 function showEditForm(e){
     let editContainerNode = e.target.parentNode.parentNode;
 
     hideDropDown(editContainerNode);
+    // toggleHiddenTask(e);
     relocateEditListForm(e);
 
     
     
 }
 function hideEditform(){
-
+    console.log();
 }
 
 function insertLastInput(e){
@@ -246,21 +238,30 @@ function findCurrentDataProject(){
     return selected.dataset.project;
 }
 
+// function toggleHiddenTask(e){
+//     console.log(e.target);
+//     const taskNode = document.querySelector("li.hidden");
+//     taskNode.classList.toggle("hidden");
+// }
+
 function relocateEditListForm(e){
     let listNode = e.target.closest("li");
     let ul = listNode.parentNode;
-    //index sth
     listNode.classList.add("hidden");
     const editListForm = document.getElementById("editListForm");
     editListForm.classList.remove("hidden");
     ul.insertBefore(editListForm, listNode);
 }
 
-function revertEditFormLocation(selector){
-    const element = document.querySelector(selector);
+function revertEditFormLocation(){
+    const editForm = document.getElementById("editListForm");
     const ul = document.querySelector("ul");
-    element.classList.add("hidden");
-    ul.appendChild(element);
+
+    const taskNode = editForm.nextElementSibling;
+    taskNode.classList.remove("hidden");
+
+    editForm.classList.add("hidden");
+    ul.appendChild(editForm);
 }
 
 function styleCompletesTask(e){
@@ -277,14 +278,11 @@ function updateCompletedTask(e){
     let listId = e.target.closest("li").id;
     let selectedTask = findSelectedTask(listId);
     selectedTask.completed = !selectedTask.completed;
-    console.log(projectList[4].taskList);
     saveToLocalStorage();
 }
 
+//find the task via id
 function findSelectedTask(listId){
-    console.log("id"+listId);
-    // let currentProject = projectList.find((project) => project.taskList.some(task => listId == task.id));
-
     let selectedTask = projectList.reduce((acc, project) =>{
         let currentTask = project.taskList.find(task => (task.id == listId));
         if(currentTask != null){
@@ -292,9 +290,9 @@ function findSelectedTask(listId){
         }
         return acc;
     },{});
-
     return selectedTask;
 }
+
 
 function styleImportantTask(e){
     //styling Node
@@ -312,16 +310,14 @@ function updateImportantTask(e){
     saveToLocalStorage();
 }
 
-
-function deleteList(e){
+//delete
+function deleteTask(e){
     let listNode = e.target.closest("li");
     let id = listNode.id;
     let selectedTask = findSelectedTask(id);
     let dataProject = selectedTask.dataProject;
     projectList[dataProject].taskList =  projectList[dataProject].taskList.filter(task => task != selectedTask);
     saveToLocalStorage();
-    console.log(projectList[dataProject].taskList);
-
     revertOptionLocation(e);
     listNode.remove();
 }
@@ -334,4 +330,4 @@ function showDetails(e){
     },0);
 }
 
-export {updateTitle, showNote, listEvent, displayTask, id};
+export {updateTitle, listEvent, displayTask, id};

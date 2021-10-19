@@ -312,8 +312,8 @@ input[type=date]{
 .rename-cancelBtn,
 .listSubmitBtn,
 .listCancelBtn,
-.edit-listSubmitBtn,
-.edit-listCancelBtn{
+.editTaskSubmitBtn,
+.editTaskCancelBtn{
     font-family:'Alata';
     width:70px;
     margin:5px;
@@ -327,13 +327,13 @@ input[type=date]{
 .projectSubmitBtn,
 .rename-renameBtn,
 .listSubmitBtn,
-.edit-listSubmitBtn{
+.editTaskSubmitBtn{
     background-color: var(--accentDark);
 }
 .projectCancelBtn,
 .rename-cancelBtn,
 .listCancelBtn,
-.edit-listCancelBtn{
+.editTaskCancelBtn{
     background-color: rgb(190, 4, 4);
 }
 

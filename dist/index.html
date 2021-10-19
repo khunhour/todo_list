@@ -154,11 +154,13 @@
                     <div class="inputField">
                         <label>Title:</label>
                         <input type="text" id="editListTitle" placeholder="What to do?">
-                        <label>Details:</label>
-                        <input type="text" id="editListDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?">
+                        <label>Details(optional):</label>
+                        <textarea type="text" id="listInputDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?" wrap="hard"></textarea>
+                        <label>Date:</label>
+                        <input type="date" id="listInputDate" >
                         <div class="formButtons">
-                            <input type="submit" class="edit-listSubmitBtn" value="Add">
-                            <input type="button" class="edit-listCancelBtn" value="Cancel">
+                            <input type="submit" class="editTaskSubmitBtn" value="Add">
+                            <input type="button" class="editTaskCancelBtn" value="Cancel">
                         </div>
                     </div>
                 </form>
@@ -177,7 +179,7 @@
                         </div>
                     </div>
                 </form>
-                <button id="addList"><span class="material-icons-round">add_circle_outlined</span>Add Items</button>
+                <button id="addList"><span class="material-icons-round">add_circle_outlined</span>Add Task</button>
             </div>
         </div>
     </div>
