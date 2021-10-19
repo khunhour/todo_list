@@ -80,7 +80,7 @@
                 </form>
                 <button id="addProject"><span class="material-icons-round">add_circle_outlined</span>Add Project</button>
                 <!-- hidden pop up option -->
-                <div class="option hidden">
+                <div class="option hidden" id="projectOption">
                     <button>Rename</button>
                     <button>Delete</button>
                 </div>
@@ -103,7 +103,7 @@
             <div class="title">Today</div>
             <div class="list-todo">
                 <ul>
-                    <li data-list="0">       
+                    <!-- <li data-list="0">       
                         <div class="unchecked"></div>
                         <p>go cry in the bathroomf sd fsdf dsf  f sdf ds fds f ds f</p>
                         <div class="list-right">
@@ -141,11 +141,11 @@
                                 <span class="material-icons-round" data-dropdown-button="">more_vert</span>
                             </div>
                         </div>
-                    </li>
+                    </li> -->
                     
                 </ul>
                 <!-- hidden pop up option -->
-                <div class="option hidden">
+                <div class="option hidden" id="listOption">
                     <button id="listEdit">Edit</button>
                     <button id="listDelete">Delete</button>
                 </div>
@@ -167,8 +167,8 @@
                     <div class="inputField">
                         <label>Title:</label>
                         <input type="text" id="listInput" placeholder="What to do?">
-                        <label>Details:</label>
-                        <input type="text" id="listInputDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?">
+                        <label>Details(optional):</label>
+                        <textarea type="text" id="listInputDetail" placeholder="eg: I'm just gonna procrastinate, aren't I?" wrap="hard"></textarea>
                         <label>Date:</label>
                         <input type="date" id="listInputDate" >
                         <div class="formButtons">

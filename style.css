@@ -220,7 +220,7 @@ form:hover{
     position: relative;             
 }
 .editContainer.active .option{
-    opacity: 1; 
+    opacity: 1 !important; 
     pointer-events: auto;
     transform: translateY(0);
 }
@@ -403,8 +403,9 @@ ul .material-icons-round{
     height: 13px;
     border: solid 2px white ;
     border-radius: 50%;
-    margin: 5px;
-    margin-top:13px;
+    margin-right:8px;
+    margin-top:10px;
+    
 }
 .checked{
     background-image: url("./images/checkmark.png");
@@ -439,15 +440,19 @@ ul .material-icons-round{
     background-color: transparent;
 }
 .list-details{
-    margin:0;
-    padding: 0;
     flex:1;
+    margin-top:5px;
 }
-ul p{
+/* ul p{
     margin:0;
     padding:8px;
     flex:1;
     padding-right:12px;
+} */
+
+.taskDetails{
+    font-size: 14px;
+    white-space: pre-wrap;
 }
 /* 
 li textarea{
@@ -523,9 +528,8 @@ li textarea:focus{
 .list-todo button:hover,
 li:hover{
     background-color: var(--dark1);
-    transform: scale(1.005);
 }
 .list-todo button:active,
 li:active{
-    transform:scale(1);
+    transform:scale(0.995);
 }
