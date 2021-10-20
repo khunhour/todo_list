@@ -13,8 +13,9 @@ function listEvent(){
     listSubmit.addEventListener("submit", processListInput);
 
     const editCancelBtn = document.querySelector(".editTaskCancelBtn");
-    editCancelBtn.addEventListener("click", (e)=>{
-        revertEditFormLocation(e);
+    editCancelBtn.addEventListener("click", ()=>{
+        revertEditFormLocation();
+        showHiddenTask();
     });
     const todoList = document.querySelector(".list-todo");
     todoList.addEventListener("click", checkListEvent);
@@ -46,7 +47,7 @@ function checkListEvent(e){
         updateImportantTask(e);
     }
     else if(isCircleIcon){
-        styleCompletesTask(e);
+        styleCompletedTask(e);
         updateCompletedTask(e);
     }
     else if(isText){
@@ -150,7 +151,7 @@ function addTask(listId, title, details, date, completed, important){
     if(completed){
         unchecked.classList.toggle("checked");
         listDetails.classList.toggle("lineThrough");
-        li.classList.toggle("fade");
+        listDetails.classList.toggle("fade");
     }
 
     const taskTitle = document.createElement('div');
@@ -220,7 +221,6 @@ function showEditForm(e){
     relocateEditListForm(e);
 
     
-    
 }
 function hideEditform(){
     console.log();
@@ -247,38 +247,51 @@ function findCurrentDataProject(){
 function relocateEditListForm(e){
     let listNode = e.target.closest("li");
     let ul = listNode.parentNode;
-    listNode.classList.add("hidden");
     const editListForm = document.getElementById("editListForm");
+    const taskTitle = listNode.querySelector(".taskTitle").textContent;
+    const taskDetails = listNode.querySelector(".taskDetails").textContent;
+
+    const titleInput = editListForm.querySelector("#editListTitle");
+    const detailInput = editListForm.querySelector("#listInputDetail");
+
+    titleInput.value = taskTitle;
+    detailInput.value = taskDetails;
+
+    listNode.classList.add("hidden");
     editListForm.classList.remove("hidden");
     ul.insertBefore(editListForm, listNode);
 }
 
+//move form from under the edited list to outside ul for standby
 function revertEditFormLocation(){
-    const editForm = document.getElementById("editListForm");
-    const ul = document.querySelector("ul");
-
-    const taskNode = editForm.nextElementSibling;
-    taskNode.classList.remove("hidden");
+    const editForm = document.querySelector("#editListForm");
+    const listToDo = document.querySelector(".list-todo");
 
     editForm.classList.add("hidden");
-    ul.appendChild(editForm);
+    listToDo.appendChild(editForm);
+}
+//show the hidden task that was hidden during edit mode
+function showHiddenTask(){
+    const hiddenTask = document.querySelector("li.hidden");
+    hiddenTask.classList.remove("hidden");
 }
 
-function styleCompletesTask(e){
+//style completed task
+function styleCompletedTask(e){
     let uncheckedNode = e.target;
-    let pNode = e.target.nextElementSibling;
     let taskTile = e.target.closest("li");
-
+    let listDetails = taskTile.querySelector(".list-details");
+    listDetails.classList.toggle("lineThrough");
+    listDetails.classList.toggle("fade");
     uncheckedNode.classList.toggle("checked");
-    pNode.classList.toggle("lineThrough");
-    taskTile.classList.toggle("fade");
 }
-
+//update the completed object data
 function updateCompletedTask(e){
     let listId = e.target.closest("li").id;
     let selectedTask = findSelectedTask(listId);
     selectedTask.completed = !selectedTask.completed;
     saveToLocalStorage();
+    console.log(selectedTask);
 }
 
 //find the task via id
@@ -292,7 +305,6 @@ function findSelectedTask(listId){
     },{});
     return selectedTask;
 }
-
 
 function styleImportantTask(e){
     //styling Node
@@ -330,4 +342,4 @@ function showDetails(e){
     },0);
 }
 
-export {updateTitle, listEvent, displayTask, id};
+export {updateTitle, listEvent, displayTask, revertEditFormLocation, id};

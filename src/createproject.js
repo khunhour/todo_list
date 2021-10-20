@@ -1,4 +1,4 @@
-import { displayTask, updateTitle, id} from "./note";
+import { displayTask, updateTitle, id, revertEditFormLocation} from "./note";
 import { showRenameForm , deleteProject, revertOptionLocation} from "./editProject";
 import { dragStartEndEvent } from "./dragAndDrop";
 
@@ -198,8 +198,11 @@ function checkTile(e){
     else if(projectTile != null){
         const title = projectTile.querySelector(".projectName");
         let dataProject = projectTile.dataset.project;
-
+        console.log("form");
+        
+        revertEditFormLocation();               //move form or option of task to original place on standby.   
         revertOptionLocation();
+
         displayTask(dataProject);
         selectTile(projectTile);
         updateTitle(title);
