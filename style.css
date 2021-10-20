@@ -533,3 +533,29 @@ li:hover{
 li:active{
     transform:scale(0.995);
 }
+
+footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top:auto;
+    background-color: var(--dark3);
+    color:var(--whiteText);
+    height:10vh;
+}
+footer > *{
+    margin: auto 10px;
+}
+footer a{
+    color:green;
+}
+footer img{
+    width: 23px;
+    height: 23px;
+    background-color: white;
+    border-radius: 50%;
+    border: solid 1px white;
+}
+footer img:hover{
+    background-color: green;
+}
