@@ -1,7 +1,8 @@
-import { displayTask, updateTitle, id} from "./note";
-import { revertEditFormLocation } from "./editTask";
-import { showRenameForm , deleteProject, revertOptionLocation} from "./editProject";
+import { displayTask, updateTitle, id} from "./creatingTask";
+import { revertEditFormLocation } from "./editingTask";
+import { showRenameForm , deleteProject, revertOptionLocation} from "./editingProject";
 import { dragStartEndEvent } from "./dragAndDrop";
+import { checkWhichHomeTile } from "./homeSection";
 
 const createEventListener = () =>{
     //event listener for creating a form for adding projects
@@ -188,12 +189,12 @@ const findNextDataset = () => {
 function checkTile(e){
     let homeTile = e.target.closest(".home .tile");
     let projectTile = e.target.closest(".project .tile");
-
+    console.log(homeTile);
     if(homeTile != null){
         const title = homeTile.querySelector("[data-name]");
-        
+        console.log(homeTile);
         selectTile(homeTile);
-        
+        checkWhichHomeTile(homeTile);
         updateTitle(title);
     }
     else if(projectTile != null){

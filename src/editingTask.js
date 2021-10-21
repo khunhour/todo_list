@@ -1,6 +1,6 @@
-import { projectList, saveToLocalStorage } from "./createproject";
-import {hideDropDown, revertOptionLocation} from "./editProject";
-import {displayTask, id} from "./note";
+import { projectList, saveToLocalStorage } from "./creatingProject";
+import {hideDropDown, revertOptionLocation} from "./editingProject";
+import {displayTask, id} from "./creatingTask";
 
 //style completed task
 function styleCompletedTask(e){

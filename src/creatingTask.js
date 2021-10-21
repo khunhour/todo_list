@@ -1,8 +1,8 @@
-import {editContainerEventListener, revertOptionLocation, hideDropDown} from "./editProject"
-import {projectList, createSpanIcon, saveToLocalStorage} from "./createproject"
+import {editContainerEventListener, revertOptionLocation, hideDropDown} from "./editingProject"
+import {projectList, createSpanIcon, saveToLocalStorage} from "./creatingProject"
 import {format, compareAsc, toDate, parseISO} from 'date-fns'
 import {styleCompletedTask, updateCompletedTask,styleImportantTask, updateImportantTask ,deleteTask,showEditForm,
-    relocateEditListForm, revertEditFormLocation, processEditTask, showHiddenTask} from "./editTask"
+    relocateEditListForm, revertEditFormLocation, processEditTask, showHiddenTask} from "./editingTask"
 
 function listEvent(){
     const addList = document.querySelector("#addList");
@@ -218,7 +218,6 @@ function findListLength(dataProject){
 //update the title
 function updateTitle(nameNode){
     const title = document.querySelector(".title");
-    console.log(title);
     title.textContent = nameNode.textContent;
 }
 

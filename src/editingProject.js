@@ -1,5 +1,5 @@
-import {createSpanIcon, projectList, saveToLocalStorage} from "./createproject"
-import {updateTitle} from "./note"
+import {createSpanIcon, projectList, saveToLocalStorage} from "./creatingProject"
+import {updateTitle} from "./creatingTask"
 
 //fire event listener for editing projects
 function editContainerEventListener(){
