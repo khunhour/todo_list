@@ -253,4 +253,4 @@ function findCurrentDataProject(){
 
 
 
-export {updateTitle, listEvent, displayTask, id};
+export {updateTitle, listEvent, displayTask, id,addTask};

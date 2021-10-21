@@ -18,6 +18,9 @@ function checkWhichHomeTile(homeTile){
 }
 
 function displayAllTasks(){
+    const ul = document.querySelector("ul");
+    ul.textContent = "";
+    
     projectList.forEach((project) =>{
         project.taskList.forEach((task) => {
             addTask(task.id, task.title, task.details, task.date,task.completed, task.important);
