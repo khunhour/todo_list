@@ -1,4 +1,5 @@
-import { displayTask, updateTitle, id, revertEditFormLocation} from "./note";
+import { displayTask, updateTitle, id} from "./note";
+import { revertEditFormLocation } from "./editTask";
 import { showRenameForm , deleteProject, revertOptionLocation} from "./editProject";
 import { dragStartEndEvent } from "./dragAndDrop";
 
