@@ -541,13 +541,14 @@ footer{
     margin-top:auto;
     background-color: var(--dark3);
     color:var(--whiteText);
-    height:10vh;
+    flex-shrink: 0;
+    height:35px;
 }
 footer > *{
     margin: auto 10px;
 }
 footer a{
-    color:green;
+    color:var(--accent);
 }
 footer img{
     width: 23px;
@@ -557,5 +558,6 @@ footer img{
     border: solid 1px white;
 }
 footer img:hover{
-    background-color: green;
+    background-color: var(--accent);
+    cursor: pointer;
 }

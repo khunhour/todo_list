@@ -94,7 +94,7 @@ const processProjectInput = (e) => {
 //save projectList and last id data on local storage
 function saveToLocalStorage(){
     localStorage.setItem("myProjectList", JSON.stringify(projectList));
-    localStorage.setItem("currentId", id.toString());
+    localStorage.setItem("currentId", (id).toString());
 }
 
 //create project factory function
@@ -185,6 +185,18 @@ const findNextDataset = () => {
     return allprojects.length;
 }
 
+// remove add task Btn when homeTiles is selected
+function hideAddTaskBtn(){
+    const addTaskBtn = document.getElementById("addList");
+    addTaskBtn.classList.add("hidden");
+}
+//show addTaskBtn when prject tile
+function showAddTaskBtn(){
+    const addTaskBtn = document.getElementById("addList");
+    addTaskBtn.classList.remove("hidden");
+
+}
+
 //check to see what tile is selected
 function checkTile(e){
     let homeTile = e.target.closest(".home .tile");
@@ -192,10 +204,10 @@ function checkTile(e){
     console.log(homeTile);
     if(homeTile != null){
         const title = homeTile.querySelector("[data-name]");
-        console.log(homeTile);
         selectTile(homeTile);
         checkWhichHomeTile(homeTile);
         updateTitle(title);
+        hideAddTaskBtn();
     }
     else if(projectTile != null){
         const title = projectTile.querySelector(".projectName");
@@ -208,6 +220,7 @@ function checkTile(e){
         displayTask(dataProject);
         selectTile(projectTile);
         updateTitle(title);
+        showAddTaskBtn();
     }
     else{
         return;

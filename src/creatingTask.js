@@ -114,12 +114,12 @@ function processListInput(e){
 
     const newTask = CreateTask(dataProject, listId, title, details, false, false, date);
     projectList[dataProject].taskList.push(newTask);
+    id++;
     saveToLocalStorage();
 
     console.log(projectList);
     addTask(listId, title, details, date);
     hideListForm();
-    id++;
     e.preventDefault();
 }
 
