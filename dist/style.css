@@ -443,46 +443,14 @@ ul .material-icons-round{
     flex:1;
     margin-top:5px;
 }
-/* ul p{
-    margin:0;
-    padding:8px;
-    flex:1;
-    padding-right:12px;
-} */
+.taskTitle{
+    min-height: 25px;
+}
 
 .taskDetails{
     font-size: 14px;
     white-space: pre-wrap;
 }
-/* 
-li textarea{
-    cursor: pointer;
-    color:white;
-    font-size: 18px;
-    height: auto;
-    margin-bottom: 5px;
-    resize: none;
-    background-color:#273746;
-    border-radius: 5px;
-
-    padding: 8px 10px;
-    padding-bottom: 0px;
-    overflow: none;
-    
-}
-.editing{
-    background-color: white;
-}
-
-li textarea:focus{
-    outline: none;
-}
-.notes textarea{
-    height:auto;
-    font-size: 15px;
-    opacity: 1;
-    transition: opacity 150ms ease-in-out;
-} */
 
 .list-right{
     display:flex;
@@ -534,6 +502,11 @@ li:active{
     transform:scale(0.995);
 }
 
+.noTask{
+    text-align: center;
+    font-size: 25px;
+}
+
 footer{
     display: flex;
     align-items: center;
@@ -561,3 +534,4 @@ footer img:hover{
     background-color: var(--accent);
     cursor: pointer;
 }
+

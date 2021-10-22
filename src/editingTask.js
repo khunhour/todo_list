@@ -1,6 +1,7 @@
 import { projectList, saveToLocalStorage } from "./creatingProject";
 import {hideDropDown, revertOptionLocation} from "./editingProject";
-import {displayTask, id} from "./creatingTask";
+import {displayTask, id, processDateData} from "./creatingTask";
+import { checkWhichHomeTile } from "./homeSection";
 
 //style completed task
 function styleCompletedTask(e){
@@ -36,6 +37,7 @@ function updateImportantTask(e){
     let selectedTask = findSelectedTask(listId);
     selectedTask.important = !selectedTask.important;
     saveToLocalStorage();
+    refreshDisplay(selectedTask.dataProject);
 }
 
 //delete task from array
@@ -73,19 +75,37 @@ function processEditTask(e){
 
     selectedTask.title = title;
     selectedTask.details = details;
-    selectedTask.date = dateInput;
+    selectedTask.date = processDateData(dateInput);
     saveToLocalStorage();
     
 
     revertEditFormLocation();
     revertOptionLocation();
     showHiddenTask();
-    displayTask(selectedTask.dataProject);
+
+    let dataProject = selectedTask.dataProject;
+    refreshDisplay(dataProject);
+
+    // displayTask(selectedTask.dataProject);
 
     console.log(projectList);
     console.log(selectedTask);
     e.preventDefault();
 }
+
+function refreshDisplay(dataProject){
+    const selectedTile = document.querySelector(".selected");
+    if(selectedTile.closest(".project") != null){
+        displayTask(dataProject);
+    }
+    else if(selectedTile.closest(".home") != null){
+        checkWhichHomeTile(selectedTile);
+    }
+    else{
+        return;
+    }
+}
+
 
 //find and return the task that is hidden
 function findHiddenTask(){
@@ -102,8 +122,6 @@ function showEditForm(e){
 
     
 }
-
-
 
 function relocateEditListForm(e){
     let listNode = e.target.closest("li");

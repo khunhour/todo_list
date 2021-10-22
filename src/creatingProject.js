@@ -212,7 +212,6 @@ function checkTile(e){
     else if(projectTile != null){
         const title = projectTile.querySelector(".projectName");
         let dataProject = projectTile.dataset.project;
-        console.log("form");
         
         revertEditFormLocation();               //move form or option of task to original place on standby.   
         revertOptionLocation();
@@ -235,4 +234,4 @@ const selectTile = (node) =>{
     node.classList.add("selected");                             //add class selected to current tile
 }
 
-export {createEventListener, createSpanIcon, projectList, saveToLocalStorage};
+export {createEventListener, createSpanIcon, projectList, saveToLocalStorage, hideAddTaskBtn};
