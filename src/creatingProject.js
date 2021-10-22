@@ -1,6 +1,6 @@
 import { displayTask, updateTitle, id} from "./creatingTask";
 import { revertEditFormLocation } from "./editingTask";
-import { showRenameForm , deleteProject, revertOptionLocation} from "./editingProject";
+import { revertOptionLocation } from "./editingProject";
 import { dragStartEndEvent } from "./dragAndDrop";
 import { checkWhichHomeTile } from "./homeSection";
 
@@ -21,71 +21,20 @@ const createEventListener = () =>{
     displayProject(projectList);
 }
 
-  let defaultProjectList=[];
-// let defaultProjectList =[
-//     {dataProject: 0, name: "Getting Started",taskNum:0, taskList:[
-//         {
-//             dataProject:0,
-//             id:0,
-//             title:"try this",
-//             details:"",
-//             completed: false,
-//             important: false
-//         }, 
-//         {
-//             dataProject:0,
-//             id:0,
-//             title:"fsdf",
-//             details:"sdfsdf",
-//             completed: false,
-//             important: false
-//         }
-//     ]},
-//     {dataProject: 1, name: "The Odin Project", taskNum:0,taskList:[
-//         {
-//             dataProject:1,
-//             id:2,
-//             title:"try this",
-//             details:"",
-//             completed: false,
-//             important: false
-//         }, 
-//         {
-//             dataProject:1,
-//             id:3,
-//             title:"fsdf",
-//             details:"sdfsdf",
-//             completed: false,
-//             important: false
-//         }
-//     ]},
-//     {dataProject: 2, name: "Task",taskNum:0, taskList:[
-//         {
-//             dataProject:2,
-//             id:3,
-//             title:"try this",
-//             details:"",
-//             completed: false,
-//             important: false
-//         }, 
-//     ]}
-// ];
-
+//get project list of objects from locak storage or start with empty
+let defaultProjectList=[];
 let projectList = localStorage.getItem("myProjectList");
     projectList = JSON.parse(projectList || JSON.stringify(defaultProjectList));
 
-  
 //process the input and prepare to create element project
 const processProjectInput = (e) => {
     let projectName = document.getElementById("projectInput").value;
     let dataProject = findNextDataset();
-
     const newProject = CreateProject(dataProject, projectName);
 
     projectList.push(newProject);
     saveToLocalStorage();
 
-    console.log(projectList);
     addProject(dataProject, projectName);
     hideProjectForm();
     e.preventDefault();
@@ -125,7 +74,7 @@ const hideProjectForm = () => {
     projectInput.value = "";
     projectForm.classList.add("hidden");
 }
-
+//display the list of all projects in the left panel
 const displayProject = (array) =>{
     array.forEach(project =>{
         addProject(project.dataProject, project.name);
@@ -170,7 +119,6 @@ const addProject = (dataProject, textInput) => {
     dragStartEndEvent(container);
 }
 
-
 // create a span icon of google material icons
 const createSpanIcon = (name) => {
     const icon = document.createElement('span');
@@ -201,7 +149,6 @@ function showAddTaskBtn(){
 function checkTile(e){
     let homeTile = e.target.closest(".home .tile");
     let projectTile = e.target.closest(".project .tile");
-    console.log(homeTile);
     if(homeTile != null){
         const title = homeTile.querySelector("[data-name]");
         selectTile(homeTile);

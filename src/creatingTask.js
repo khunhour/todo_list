@@ -1,6 +1,5 @@
 import {editContainerEventListener, revertOptionLocation, hideDropDown} from "./editingProject"
 import {projectList, createSpanIcon, saveToLocalStorage} from "./creatingProject"
-import {format, compareAsc, toDate, parseISO} from 'date-fns'
 import {styleCompletedTask, updateCompletedTask,styleImportantTask, updateImportantTask ,deleteTask,showEditForm,
     relocateEditListForm, revertEditFormLocation, processEditTask, showHiddenTask} from "./editingTask"
 
@@ -14,13 +13,6 @@ function listEvent(){
     const listSubmit = document.getElementById("listForm");
     listSubmit.addEventListener("submit", processListInput);
 
-    // const editCancelBtn = document.querySelector(".editTaskCancelBtn");
-    // editCancelBtn.addEventListener("click", ()=>{
-    //     revertEditFormLocation();
-    //     showHiddenTask();
-    // });
-
-    // const editSubmitBtn = document.querySelector(".")
     const todoList = document.querySelector(".list-todo");
     todoList.addEventListener("click", checkListEvent);
 }
@@ -38,7 +30,6 @@ const CreateTask = (dataProject,id, title, details, completed, important, date) 
 }
 
 function checkListEvent(e){
-    let node = e.target;
     let isStarIcon = e.target.matches(".star-outline");
     let isCircleIcon = e.target.matches(".unchecked");
 
@@ -46,8 +37,8 @@ function checkListEvent(e){
     let isEditTaskCancel = e.target.matches(".editTaskCancelBtn");
 
     let isDeleteBtn = e.target.matches("#listDelete");
-    let isEditBtn = e.target.matches("#listEdit")
-    console.log(e.target);
+    let isEditBtn = e.target.matches("#listEdit");
+
     if(isStarIcon){
         styleImportantTask(e);
         updateImportantTask(e);
@@ -66,39 +57,36 @@ function checkListEvent(e){
         processEditTask(e);
     }
     else if(isEditTaskCancel){
-        console.log("cancel");
         revertEditFormLocation();
         showHiddenTask();
     }
     else{
         return;
     }
-    
 }
 
-// pop up the add list form
+// pop up the add task form
 const showListForm = () => {
     const ListForm = document.querySelector("#listForm");
     ListForm.classList.remove("hidden");
+    document.getElementById("listInput").focus();
 }
 
-//hide List form
-const hideListForm = (e) => {
+//hide add-task-form
+const hideListForm = () => {
     const listForm = document.querySelector("#listForm");
     const listInput = document.querySelector('#listInput');
     const listInputDetail = document.querySelector("#listInputDetail");
     const dateInput = document.querySelector("#listInputDate");
-    // let formNode = e.target.closest("form");
-    // const listInput = formNode.querySelector("")
 
     listInput.value = "";
     listInputDetail.value ="";
     dateInput.value ="";
 
     listForm.classList.add("hidden");
-    // revertEditFormLocation("#listForm");
 }
 
+//get id from local storage or get a default one
 let defaultId = 20;
 let id = Number(localStorage.getItem("currentId")) || defaultId;
 
@@ -117,7 +105,6 @@ function processListInput(e){
     id++;
     saveToLocalStorage();
 
-    console.log(projectList);
     addTask(listId, title, details, date);
     hideListForm();
     e.preventDefault();
@@ -144,7 +131,7 @@ function displayTask(dataProject){
     });
 }
 
-//create the task DOM
+//create the task into HTML
 function addTask(listId, title, details, date, completed, important){
     const ul = document.querySelector("ul");
     const li = document.createElement('li');
@@ -209,48 +196,16 @@ function addTask(listId, title, details, date, completed, important){
     editContainer.appendChild(threeDots);
 }
 
-//find how many task is in the current project
-function findListLength(dataProject){
-    let length = projectList[dataProject].taskList.length;
-    return length;
-}
-
-//update the title
+//update the title of the content (right panel heading)
 function updateTitle(nameNode){
     const title = document.querySelector(".title");
     title.textContent = nameNode.textContent;
 }
 
-
-
-function hideEditform(){
-    console.log();
-}
-
-function insertLastInput(e){
-    const listNode = e.target.closest("li");
-    const inputs = listNode.querySelectorAll('input[type="text"]');
-
-
-}
-
+//function to find the data-project index when adding new tasks
 function findCurrentDataProject(){
     const selected = document.querySelector(".selected");
     return selected.dataset.project;
 }
 
-// function toggleHiddenTask(e){
-//     console.log(e.target);
-//     const taskNode = document.querySelector("li.hidden");
-//     taskNode.classList.toggle("hidden");
-// }
-
-
-
-
-
-
-
-
-
-export {updateTitle, listEvent, displayTask, id,addTask, processDateData};
+export {updateTitle, listEvent, displayTask, id, addTask, processDateData};

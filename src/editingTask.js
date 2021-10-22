@@ -1,6 +1,6 @@
 import { projectList, saveToLocalStorage } from "./creatingProject";
-import {hideDropDown, revertOptionLocation} from "./editingProject";
-import {displayTask, id, processDateData} from "./creatingTask";
+import { hideDropDown, revertOptionLocation } from "./editingProject";
+import { displayTask, processDateData } from "./creatingTask";
 import { checkWhichHomeTile } from "./homeSection";
 
 //style completed task
@@ -112,17 +112,15 @@ function findHiddenTask(){
     const hiddenTask = document.querySelector("li.hidden");
     return hiddenTask;
 }
-
+//reveal edit form for task
 function showEditForm(e){
     let editContainerNode = e.target.parentNode.parentNode;
-
     hideDropDown(editContainerNode);
-    // toggleHiddenTask(e);
     relocateEditListForm(e);
 
-    
+    document.getElementById("editListTitle").focus();
 }
-
+//move the edit form in place of the task you want to edit
 function relocateEditListForm(e){
     let listNode = e.target.closest("li");
     let ul = listNode.parentNode;
@@ -160,4 +158,5 @@ function showHiddenTask(){
     hiddenTask.classList.remove("hidden");
 }
 
-export {styleCompletedTask,styleImportantTask , updateCompletedTask, updateImportantTask ,deleteTask, showEditForm,relocateEditListForm, revertEditFormLocation, processEditTask, showHiddenTask}
+export {styleCompletedTask,styleImportantTask , updateCompletedTask, updateImportantTask 
+    ,deleteTask, showEditForm,relocateEditListForm, revertEditFormLocation, processEditTask, showHiddenTask}
