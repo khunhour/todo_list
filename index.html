@@ -15,12 +15,15 @@
 </head>
 <body>
     <header class="logoArea">
+        <div class="hiddenMenu">
+            <span class="material-icons-round">menu</span>
+        </div>
         <div class="logoLeft">
             <img src="./images/check_logo.png" alt="check logo">
             <div class="logoText"><span>What</span>ToDo</div>
         </div>
         <div class="theme">
-            <input type="checkbox" class="checkbox" id="checkbox">
+            <input type="checkbox" class="checkbox" id="checkbox" checked = "false">
             <label for="checkbox" class="label">
                 <img class="sun" src="images/sun.png">
                 <span class="material-icons-round moon">dark_mode</span>
@@ -29,7 +32,7 @@
         </div>
     </header>
     <div class="content">
-        <div class="leftPanel">
+        <div class="leftPanel hidden">
             
             <div class="home">
                 <h2>Home</h2>
@@ -57,7 +60,7 @@
                         <span class="material-icons-round">menu</span>
                     </div>
                     <div class="inputField">
-                        <input type="text" id="projectInput" placeholder="Enter Project Name">
+                        <input type="text" id="projectInput" placeholder="Enter Project Name" maxlength="24">
                         <div class="formButtons">
                             <input type="submit" class="projectSubmitBtn" value="Add">
                             <input type="button" class="projectCancelBtn" value="Cancel">
