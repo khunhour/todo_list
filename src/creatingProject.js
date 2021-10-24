@@ -152,6 +152,7 @@ function checkTile(e){
     if(homeTile != null){
         const title = homeTile.querySelector("[data-name]");
         selectTile(homeTile);
+        revertOptionLocation();
         checkWhichHomeTile(homeTile);
         updateTitle(title);
         hideAddTaskBtn();

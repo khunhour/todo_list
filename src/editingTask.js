@@ -37,6 +37,7 @@ function updateImportantTask(e){
     let selectedTask = findSelectedTask(listId);
     selectedTask.important = !selectedTask.important;
     saveToLocalStorage();
+    revertOptionLocation();
     refreshDisplay(selectedTask.dataProject);
 }
 
@@ -65,7 +66,7 @@ function findSelectedTask(listId){
     return selectedTask;
 }
 
-
+//process the input from the edit task form
 function processEditTask(e){
     let title = document.querySelector("#editListTitle").value;
     let details = document.querySelector("#editListInputDetail").value;
@@ -93,6 +94,7 @@ function processEditTask(e){
     e.preventDefault();
 }
 
+//refresh the content display after its been edited/changed in some way
 function refreshDisplay(dataProject){
     const selectedTile = document.querySelector(".selected");
     if(selectedTile.closest(".project") != null){

@@ -1,15 +1,21 @@
 :root {
     font-family: 'Alata', sans-serif;
+    font-size: 16px;
+    /* --light1: #FFFFFF;
+    --light3: #8899a6;  */
+    --light:#f5f5f5;
+    --light2:#ececec;
+    --light3:#d8d8d8;
+    --light4: #c7c7c7;
 
-    --light1: #FFFFFF;
-    --light3: #8899a6; 
 
-    --dark1: #15202b;
-    --dark2: #192734;
-    --dark3: #22303c;
-
-    --whiteText: #eaebec;
-    --accent: #2ecc71;
+    --bgColor1: #15202b;
+    --bgColor2: #192734;
+    --bgColor3: #22303c;
+    --bgColorPopUp: #273746;
+    --textColor: #eaebec;
+    /* --accent: #2ecc71; */
+    --accent: #2abd67;
     --accentDark:#1f8d4d;
 }
 
@@ -28,22 +34,52 @@ body{
     flex-direction: column;
     height: 100%;
 }
+
+body.light{
+    --bgColor2:#ececec;
+    --bgColor3: #f2f3f5;
+    --bgColor1:#fefcfe;
+    --bgColorPopUp: #f3f1f3;
+
+    --textColor: #374958;
+
+    --accentDark: #2abd67;
+}
 .logoArea{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: #22303c;
-    color:#dbd7d7;
-    font-size:2.5em;
+    background-color: var(--bgColor3);
+    font-size:2.5rem;
     padding:10px 20px;
     font-weight: 900;
-    border-bottom: solid 2px #1f8d4d;
+    border-bottom: solid 2px var(--accentDark);
+}
+.hiddenMenu{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+        
+    padding:10px;
+    border-radius: 4px;
+}
+.hiddenMenu:active{
+    transform: scale(0.9);
+}
+.hiddenMenu .material-icons-round{
+    color: var(--textColor);
+    transform:scale(1.3);
+
+    pointer-events: none;
+}
+.hiddenMenu:hover{
+    background-color: rgba(128, 128, 128, 0.267);
 }
 .logoLeft{
     display: flex;
     align-items: center;
-    color: #2ecc71;
+    color: var(--accent);
 }
 .logoLeft img{
     width: 2.5rem;
@@ -51,14 +87,14 @@ body{
     padding-right:5px;
 }
 .logoLeft span{
-    color:#eaebec;
+    color:var(--textColor);
 }
 .theme{
     margin-right:0px;
     user-select: none;
 }
 .label{
-    background-color: var(--dark1);
+    background-color: var(--bgColor1);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -77,15 +113,7 @@ body{
     opacity: 0;
     position: absolute;
 }
-
-.star{
-    width:12px;
-    position: absolute;
-    left:52px;
-    bottom:15px;
-}
 .sun{
-    color: #f7c603;
     transform: scale(1.3);
     width:24.7px;
 }
@@ -99,34 +127,35 @@ body{
     height:25px;
     left: 3px;
     background-color: var(--accentDark);
-    border:solid 4px var(--dark1);
+    border:solid 4px var(--bgColor1);
     border-radius: 50%;
     transition: transform 0.2s linear;
 }
 /* plus meaning target the node after it */
 .checkbox:checked + .label .ball{            
-    transform: translate(37px);      
+    transform: translate(37px);
     background-color: var(--accentDark);
-    border:solid 4px var(--whiteText);
+    border:solid 4px var(--bgColor3);
 }
 .checkbox:checked + label{
-    background-color: var(--whiteText);
+    background-color: var(--bgColor3);
 }
 
 /* css for content below logo */
-
 .content{
     display:flex;
     flex-direction: row;
-    flex:1;
+    box-sizing: border-box;
+    
 }
 
 /* css for .leftPanel */
 .leftPanel{
-    background-color: #15202b;
+    box-sizing: border-box;
+    background-color: var(--bgColor1);
     display: flex;
     flex-direction: column;
-    color:#eaebec;
+    color:var(--textColor);
     padding:20px;
     width:350px;
     user-select: none;
@@ -134,7 +163,7 @@ body{
 .leftPanel h2{
     margin-top: 0;
     padding-bottom:5px;
-    border-bottom: solid 2px white;
+    border-bottom: solid 2px var(--textColor);
 }
 .leftPanel .material-icons-round{
     margin-right: 5px;
@@ -164,8 +193,8 @@ button, li, form, .tile{
     margin: 3px 0;
     height: auto;
     padding-top: 20px;
-    font-size: 18px;
-    color: white;
+    font-size: 1.125rem;
+    color: var(--textColor);
     background: transparent;
     padding:5px;
     display:flex;
@@ -179,44 +208,30 @@ button, li, form, .tile{
 .leftPanel .tile:hover, 
 button:hover,
 form:hover{
-    background-color: #1a2a38;
+    background-color: var(--bgColor2);
 }
 
 .projectInfo{
     display: flex;
     flex:1;
 }
-.number{
-    min-width: 10px;
-    min-height: 12px;
-    padding: 1px 5px;
-    margin-left: 12px;
-
-    font-size: 15px;
-    background-color: var(--accentDark);
-    border-radius: 30px;
-    vertical-align: center;
-}
 
 .selected{
     border-bottom-left-radius: 0px;
     border-top-left-radius: 0px;
-    border-left: solid 2px var(--accent) !important;
-    background-color: #1f8d4d5d;
+    border-left: solid 3px var(--accent) !important;
+    background-color: #2abd6770;
 }
-
 .selected:hover{
     background-color: #1f8d4d7a !important;
 }
-/* css for editProject part */
 
+
+/* css for editProject part */
 .editContainer{
     display: flex;
     align-items: center;
     margin-left:auto;
-    /* without posotion relative in editproject the 
-    position absolute in .option will be based on window 
-    and not his parent .editProject */
     position: relative;             
 }
 .editContainer.active .option{
@@ -229,22 +244,20 @@ form:hover{
     display: flex;
     opacity: 0;
     flex-direction: column;
-    background: var(--whiteText);
+    background: var(--textColor);
     bottom:30px;
     right:10px;
     z-index: 2;
     border-radius:3px;
-    background-color: #273746;
+    background-color: var(--bgColorPopUp);
     padding:4px;
     box-shadow: 0 2px 5px rgba(0,0,0, 0.4);
     transform: translateY(+10px) ;
     transition: opacity 100ms ease-in-out, transform 100ms ease-in-out;
-    
-    /* read above comment */
     position:absolute;
 }
 .option > button{
-    color:white;
+    color:var(--textColor);
     margin:0;
 }
 
@@ -295,10 +308,12 @@ input[type=date]{
     width:100%;
     box-sizing: border-box;
     font-family: 'Alata';
-    font-size:16px;
-    background-color: var(--whiteText);
-    border: none;
+    font-size:1rem;
+    background-color: white;
+    border: solid 2px #273746;
+    border-radius: 3px;
     padding:5px;
+    resize: none;
 }
 .formButtons{
     margin-top:5px;
@@ -351,25 +366,27 @@ input[type="submit"]:hover{
 
 /* css for right panel */
 .rightPanel{
-    background-color: #192734;
+    background-color: var(--bgColor2);
     display: flex;
     flex-direction: column;
     padding: 30px 50px;
-    flex:1;
+    flex: 1;
+    min-height: 90vh;
+    box-sizing: border-box;
 }
 .title{
     background-color: var(--accentDark);
     height: 60px;
     padding: 20px;
-    font-size:2.5rem;
-    color: var(--whiteText);
+    font-size:2.3rem;
+    color: #f7f5f5;
     border-radius: 3px;
     margin-bottom: 10px;
 }
 ul{
     padding:0;
     list-style-type:none;
-    color:var(--whiteText);
+    color:var(--textColor);
 }
 
 .list-todo{
@@ -383,7 +400,7 @@ li{
     padding: 0;
     padding-left: 5px;
     margin-bottom: 5px;
-    border-bottom: solid 1px white;
+    border: solid 1.5px var(--textColor);
     transition: transform 100ms ease-in-out;
 }
 
@@ -401,11 +418,11 @@ ul .material-icons-round{
 .unchecked{
     width: 13px;
     height: 13px;
-    border: solid 2px white ;
+    border: solid 2px var(--textColor) ;
     border-radius: 50%;
     margin-right:8px;
     margin-top:10px;
-    
+    flex-shrink: 0;
 }
 .checked{
     background-image: url("./images/checkmark.png");
@@ -448,8 +465,9 @@ ul .material-icons-round{
 }
 
 .taskDetails{
-    font-size: 14px;
+    font-size: 0.875rem;
     white-space: pre-wrap;
+    overflow-wrap:normal;
 }
 
 .list-right{
@@ -464,14 +482,14 @@ ul .material-icons-round{
     border-radius: 3px;
 }
 .list-right .material-icons-round:hover{
-    background-color:#253c50;
+    background-color:var(--bgColorPopUp);
     
 }
 .date{
-    font-size: 14px;
+    font-size: 0.875rem;
     padding:3px 6px;
     margin: 5px 5px;
-    border:solid 1px white;
+    border:solid 1.5px var(--textColor);
     border-radius: 10px;
     /* margin-bottom: auto; */
 }
@@ -487,7 +505,7 @@ ul .material-icons-round{
 
 .list-todo form{
     padding:10px 20px;
-    background-color: var(--dark1);
+    background-color: var(--bgColor1);
 }
 #addList{
     padding-left:45px;
@@ -495,7 +513,7 @@ ul .material-icons-round{
 
 .list-todo button:hover,
 li:hover{
-    background-color: var(--dark1);
+    background-color: var(--bgColor1);
 }
 .list-todo button:active,
 li:active{
@@ -504,7 +522,7 @@ li:active{
 
 .noTask{
     text-align: center;
-    font-size: 25px;
+    font-size: 1.5rem;
 }
 
 footer{
@@ -512,13 +530,14 @@ footer{
     align-items: center;
     justify-content: center;
     margin-top:auto;
-    background-color: var(--dark3);
-    color:var(--whiteText);
+    background-color: var(--bgColor3);
+    color:var(--textColor);
     flex-shrink: 0;
     height:35px;
 }
 footer > *{
     margin: auto 10px;
+    height: 35px;
 }
 footer a{
     color:var(--accent);
@@ -528,10 +547,59 @@ footer img{
     height: 23px;
     background-color: white;
     border-radius: 50%;
-    border: solid 1px white;
+    border: solid 1px var(--textColor);
 }
 footer img:hover{
     background-color: var(--accent);
     cursor: pointer;
 }
 
+.push{
+    margin-left:350px;
+}
+@media (max-width:930px){
+    :root{
+        font-size: 16px;
+    }
+    .content{
+        flex-direction: column;
+    }
+    .leftPanel{
+        z-index: 3;
+        overflow:auto;
+        width:auto;
+    }
+    footer{
+        line-height: 35px;
+    }
+}
+
+@media (max-width: 430px){
+    :root{
+        font-size: 13px;
+    }
+    .rightPanel{
+        padding:14px;
+    }
+    .title{
+        padding:8px;
+        text-align: center;
+        margin:0px;
+        height: auto;
+    }
+    .content .material-icons-round{
+        transform: scale(0.85);
+    }
+    .list-right{
+        padding:0px;
+        margin-top:3px;
+    }
+    .leftPanel img, 
+    footer img{
+        width:20px;
+        height: 20px;
+    }
+    footer{
+        line-height: 35px;
+    }
+}
