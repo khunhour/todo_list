@@ -85,7 +85,7 @@ const hideListForm = () => {
 }
 
 //get id from local storage or get a default one
-let defaultId = 20;
+let defaultId = 0;
 let id = Number(localStorage.getItem("currentId")) || defaultId;
 
 //processing data from add task
