@@ -15,6 +15,7 @@
  - display all tasks that is dued today
  - display all tasks that is dued until next week
  - display all tasks that are marked important
+ - save all you projects and task to localStorage
  - light & Dark mode
 # Note to self
  - on smaller screen, side panel show above instead of on the side(flex items vs position absolute);
