@@ -528,7 +528,8 @@ footer{
 }
 footer > *{
     margin: auto 10px;
-    height: 35px;
+    vertical-align: center;
+    /* height: 35px; */
 }
 footer a{
     color:var(--accent);
@@ -536,6 +537,7 @@ footer a{
 footer img{
     width: 23px;
     height: 23px;
+    margin-top: 5px;
     background-color: white;
     border-radius: 50%;
     border: solid 1px var(--textColor);
