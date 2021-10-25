@@ -8,15 +8,12 @@ listEvent();
 createEventListener();
 editContainerEventListener();
 dragAndDropEvent();
-
 displayAllTasks();
 
-//
+//hide side menu event listener
 const hiddenMenu = document.querySelector(".hiddenMenu");
 hiddenMenu.addEventListener("click", ()=>{
     const leftPanel = document.querySelector(".leftPanel");
-    const rightPanel = document.querySelector(".rightPanel");
-    // rightPanel.classList.toggle("push");
     leftPanel.classList.toggle("hidden");
 });
 

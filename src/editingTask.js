@@ -18,7 +18,6 @@ function updateCompletedTask(e){
     let selectedTask = findSelectedTask(listId);
     selectedTask.completed = !selectedTask.completed;
     saveToLocalStorage();
-    console.log(selectedTask);
 }
 
 //put styling on important task
@@ -86,11 +85,6 @@ function processEditTask(e){
 
     let dataProject = selectedTask.dataProject;
     refreshDisplay(dataProject);
-
-    // displayTask(selectedTask.dataProject);
-
-    console.log(projectList);
-    console.log(selectedTask);
     e.preventDefault();
 }
 

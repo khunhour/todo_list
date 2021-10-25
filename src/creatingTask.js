@@ -1,7 +1,6 @@
-import {editContainerEventListener, revertOptionLocation, hideDropDown} from "./editingProject"
 import {projectList, createSpanIcon, saveToLocalStorage} from "./creatingProject"
 import {styleCompletedTask, updateCompletedTask,styleImportantTask, updateImportantTask ,deleteTask,showEditForm,
-    relocateEditListForm, revertEditFormLocation, processEditTask, showHiddenTask} from "./editingTask"
+        revertEditFormLocation, processEditTask, showHiddenTask} from "./editingTask"
 
 function listEvent(){
     const addList = document.querySelector("#addList");
@@ -82,7 +81,6 @@ const hideListForm = () => {
     listInput.value = "";
     listInputDetail.value ="";
     dateInput.value ="";
-
     listForm.classList.add("hidden");
 }
 

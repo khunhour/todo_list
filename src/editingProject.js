@@ -1,4 +1,4 @@
-import {createSpanIcon, projectList, saveToLocalStorage} from "./creatingProject"
+import {projectList, saveToLocalStorage} from "./creatingProject"
 import {updateTitle} from "./creatingTask"
 
 //fire event listener for editing projects
@@ -161,7 +161,6 @@ const deleteProject = (e) => {
     sortArray();
     projectList.splice(index,1);
     saveToLocalStorage();
-    console.log(projectList);
 }
 
 function sortArray(){
