@@ -1,6 +1,6 @@
 # ToDo-List
  - This is a Basic Todo-List
- - A project of The Odin Project
+ - using date-fns package
  - Check out live preview here: 
 # Functionality
  - add projects
