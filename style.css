@@ -1,20 +1,12 @@
 :root {
     font-family: 'Alata', sans-serif;
     font-size: 16px;
-    /* --light1: #FFFFFF;
-    --light3: #8899a6;  */
-    --light:#f5f5f5;
-    --light2:#ececec;
-    --light3:#d8d8d8;
-    --light4: #c7c7c7;
-
 
     --bgColor1: #15202b;
     --bgColor2: #192734;
     --bgColor3: #22303c;
     --bgColorPopUp: #273746;
     --textColor: #eaebec;
-    /* --accent: #2ecc71; */
     --accent: #2abd67;
     --accentDark:#1f8d4d;
 }
@@ -34,17 +26,16 @@ body{
     flex-direction: column;
     height: 100%;
 }
-
+/* css when light mode is turned on */
 body.light{
     --bgColor2:#ececec;
     --bgColor3: #f2f3f5;
     --bgColor1:#fefcfe;
     --bgColorPopUp: #f3f1f3;
-
     --textColor: #374958;
-
     --accentDark: #2abd67;
 }
+/* css for header area(logo) */
 .logoArea{
     display: flex;
     flex-direction: row;
@@ -131,6 +122,7 @@ body.light{
     border-radius: 50%;
     transition: transform 0.2s linear;
 }
+
 /* plus meaning target the node after it */
 .checkbox:checked + .label .ball{            
     transform: translate(37px);
@@ -294,7 +286,6 @@ form:hover{
 
 .formInput{
     display:flex;
-
 }
 .inputField{
     display: flex;
@@ -488,10 +479,9 @@ ul .material-icons-round{
 .date{
     font-size: 0.875rem;
     padding:3px 6px;
-    margin: 5px 5px;
+    margin: 6px 5px;
     border:solid 1.5px var(--textColor);
     border-radius: 10px;
-    /* margin-bottom: auto; */
 }
 .list-details span{
     display: inline-block;
@@ -525,6 +515,7 @@ li:active{
     font-size: 1.5rem;
 }
 
+/* css for footer */
 footer{
     display: flex;
     align-items: center;
@@ -554,9 +545,7 @@ footer img:hover{
     cursor: pointer;
 }
 
-.push{
-    margin-left:350px;
-}
+/* media queries */
 @media (max-width:930px){
     :root{
         font-size: 16px;
